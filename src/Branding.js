@@ -1,7 +1,8 @@
+import React from 'react';
 import classNames from 'classnames';
 
-import DefaultBrandbarLogo from './png_trans_logo-navbar.png';
-import DefaultDashboardLogo from './png_trans_logo.png';
+import DefaultBrandbarLogo from '../dist/images/png_trans_logo-navbar.png';
+import DefaultDashboardLogo from '../dist/images/png_trans_logo.png';
 import { useBranding, useEnvironment } from './BrandingContext';
 
 export function BrandbarLogo() {
