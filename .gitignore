@@ -9,7 +9,10 @@
 /coverage
 
 # production
-/build
+/lib
+/es
+
+.babelrc
 
 # misc
 .DS_Store

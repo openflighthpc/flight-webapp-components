@@ -2,8 +2,34 @@
   "name": "flight-webapp-components",
   "version": "0.1.0",
   "description": "React component library for use with OpenflightHPC web suite applications.",
+  "files": [
+    "lib",
+    "es",
+    "lib",
+    "yarn.lock"
+  ],
   "main": "lib/index.js",
+  "module": "es/index.js",
   "repository": "https://github.com/openflighthpc/flight-webapp-components",
+  "scripts": {
+    "build": "yarn run build:cjs && yarn run build:esm",
+    "build:cjs": "babel --config-file ./babel.config.cjs.json src -d lib",
+    "build:cjs:watch": "babel --config-file ./babel.config.cjs.json src -w -d lib",
+    "build:esm": "babel --config-file ./babel.config.esm.json src -d es",
+    "build:esm:watch": "babel --config-file ./babel.config.esm.json src -w -d es",
+    "clean": "rm -rf lib es",
+    "lint": "eslint src; exit 0",
+    "lint:watch": "esw -w src",
+    "prepublishOnly": "yarn run build"
+  },
   "author": "Ben Armston <ben.armston@alces-software.com>",
-  "license": "EPL-2.0"
+  "license": "EPL-2.0",
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.1",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.0",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13"
+  }
 }
