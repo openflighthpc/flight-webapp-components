@@ -6,7 +6,7 @@
     "dist",
     "es",
     "lib",
-    "lib",
+    "src",
     "yarn.lock"
   ],
   "main": "lib/index.js",
