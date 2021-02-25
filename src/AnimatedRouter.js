@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { CSSTransition } from "react-transition-group";
 
 import ErrorBoundary from './ErrorBoundary';
-import './AnimatedRouter.css';
 
 function AnimatedRouter({ AuthenticatedRoute, Redirect, Route, exact, routes, sideNav }) {
   const SideNav = sideNav;

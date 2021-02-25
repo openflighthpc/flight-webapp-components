@@ -8,11 +8,10 @@
 # testing
 /coverage
 
-# production
+# compiled files
 /lib
 /es
-
-.babelrc
+/dist/styles/flight-webapp-components.css
 
 # misc
 .DS_Store
