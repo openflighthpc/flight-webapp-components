@@ -1,0 +1,9 @@
+{
+  "name": "flight-webapp-components",
+  "version": "0.1.0",
+  "description": "React component library for use with OpenflightHPC web suite applications.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/openflighthpc/flight-webapp-components",
+  "author": "Ben Armston <ben.armston@alces-software.com>",
+  "license": "EPL-2.0"
+}
