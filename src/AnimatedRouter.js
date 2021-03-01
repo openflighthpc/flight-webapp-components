@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition } from "react-transition-group";
+import classNames from 'classnames';
 
 import ErrorBoundary from './ErrorBoundary';
 
@@ -37,13 +38,19 @@ function AnimatedRouter({ AuthenticatedRoute, Redirect, Route, exact, routes, si
                   <div className="page row" ref={pageRef}>
                     <ErrorBoundary>
                       { sideNav ? <SideNav /> : null }
-                      <div className="centernav col-12 col-md-9 col-lg-8 offset-md-0 offset-lg-0 mt-4">
-                        <Component />
-                      </div>
-                      { sideNav ? <SideNav /> : null }
-                    </ErrorBoundary>
-                  </div>
-                </CSSTransition>
+                      <div className={classNames( "centernav mt-4 col-12", {
+                        "col-md-9": sideNav,
+                        "col-lg-8": sideNav,
+                        "offset-md-0": sideNav,
+                        "offset-lg-0": sideNav,
+                        "mt-4": sideNav,
+                      })}>
+                      <Component />
+                    </div>
+                    { sideNav ? <SideNav /> : null }
+                  </ErrorBoundary>
+                </div>
+              </CSSTransition>
               );
             }}
           </MyRoute>

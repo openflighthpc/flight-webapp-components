@@ -1,6 +1,7 @@
 export * as utils from './utils';
 export * from './Branding';
 export * from './BrandingContext';
+export { default as ErrorBoundary } from './ErrorBoundary';
 export * from './ErrorBoundary';
 export * from './Overlay';
 export * from './useMedia';

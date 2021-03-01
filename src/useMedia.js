@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 
 export function useMedia(queries, values, defaultValue) {
-  const mediaQueryLists = queries.map(q => window.matchMedia(q));
+  let mediaQueryLists = queries.map(q => window.matchMedia(q));
+  if (process.env.NODE_ENV === 'test') {
+    // Workaround an issue with mocking `window.matchMedia` in tests.
+    mediaQueryLists = mediaQueryLists.filter(i => i != null);
+  }
 
   const getValue = () => {
     const index = mediaQueryLists.findIndex(mql => mql.matches);
