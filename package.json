@@ -20,7 +20,8 @@
     "build:esm:watch": "babel --config-file ./babel.config.esm.json src -w -d es",
     "clean": "rm -rf lib es",
     "lint": "eslint src; exit 0",
-    "prepublishOnly": "yarn run build"
+    "prepublishOnly": "yarn run build",
+    "postinstall": "yarn run build"
   },
   "author": "Ben Armston <ben.armston@alces-software.com>",
   "license": "EPL-2.0",
