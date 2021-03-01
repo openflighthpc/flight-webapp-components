@@ -9,9 +9,9 @@
 /coverage
 
 # compiled files
-/lib
-/es
-/dist/styles/flight-webapp-components.css
+#/lib
+#/es
+#/dist/styles/flight-webapp-components.css
 
 # misc
 .DS_Store

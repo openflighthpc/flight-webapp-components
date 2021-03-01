@@ -1,0 +1,32 @@
+/*  imported from feedback.module.css  */
+
+.feedback-module__formFeedback___pNN0w {
+    display: block;
+    font-size: 12px;
+    min-height: 12px;
+    line-height: 12px;
+    margin: 5px;
+}
+
+.feedback-module__formFeedback_base___2S9g7 {
+    font-size: 100%;
+    margin-left: 0;
+}
+/*  imported from styles.module.css  */
+
+/* add css module styles here (optional) */
+
+.styles-module__DropdownToggle___1X_XD::after {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.styles-module__inlineButton___2jwhT {
+    padding: 0;
+    vertical-align: unset;
+}
+
+.styles-module__userBlock___Xd39U {
+    line-height: 1;
+}
+
