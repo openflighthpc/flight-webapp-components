@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import useFetch from 'use-http';
 
+import { AppLoadingSpinner } from '../Spinner';
+
 const initialState = null;
 const Context = React.createContext(initialState);
 
@@ -21,6 +23,7 @@ export function useLoginApi() {
 
 function Provider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   const { del, get, response } = useLoginApi();
 
   const actions = useMemo(
@@ -50,11 +53,15 @@ function Provider({ children }) {
       } else {
         setCurrentUser(null);
       }
+      setLoaded(true);
     }
     getSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!loaded) {
+    return <AppLoadingSpinner />;
+  }
   return (
     <Context.Provider value={{ currentUser, actions }}>
       {children}
