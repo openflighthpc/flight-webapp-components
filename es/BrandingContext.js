@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import useFetch from 'use-http';
-import Spinner from './Spinner';
+import { AppLoadingSpinner } from './Spinner';
 import { DefaultErrorMessage } from './ErrorBoundary';
 import { isObject } from './utils';
 
@@ -22,9 +22,7 @@ function makeDataContext(url) {
         data = _useFetch.data;
 
     if (loading) {
-      return /*#__PURE__*/React.createElement(Spinner, {
-        text: "Loading..."
-      });
+      return /*#__PURE__*/React.createElement(AppLoadingSpinner, null);
     } else if (error && error.message === "Not Found") {
       return /*#__PURE__*/React.createElement(Context.Provider, {
         value: null

@@ -1,6 +1,6 @@
 import React from 'react';
 import useFetch from 'use-http';
-import Spinner from './Spinner';
+import { AppLoadingSpinner } from './Spinner';
 import { DefaultErrorMessage } from './ErrorBoundary';
 var initialState = null;
 var Context = /*#__PURE__*/React.createContext(initialState);
@@ -14,9 +14,7 @@ function Provider(_ref) {
       data = _useFetch.data;
 
   if (loading) {
-    return /*#__PURE__*/React.createElement(Spinner, {
-      text: "Loading..."
-    });
+    return /*#__PURE__*/React.createElement(AppLoadingSpinner, null);
   } else if (error && error.message === "Not Found") {
     return /*#__PURE__*/React.createElement(Context.Provider, {
       value: {

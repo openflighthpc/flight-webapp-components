@@ -16,6 +16,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 import React, { useEffect, useMemo, useState } from 'react';
 import useFetch from 'use-http';
+import { AppLoadingSpinner } from '../Spinner';
 var initialState = null;
 var Context = /*#__PURE__*/React.createContext(initialState);
 var loginApiUrl = new URL(process.env.REACT_APP_LOGIN_API_BASE_URL, window.location.origin).toString();
@@ -35,6 +36,11 @@ function Provider(_ref) {
       _useState2 = _slicedToArray(_useState, 2),
       currentUser = _useState2[0],
       setCurrentUser = _useState2[1];
+
+  var _useState3 = useState(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loaded = _useState4[0],
+      setLoaded = _useState4[1];
 
   var _useLoginApi = useLoginApi(),
       del = _useLoginApi.del,
@@ -81,7 +87,9 @@ function Provider(_ref) {
                   setCurrentUser(null);
                 }
 
-              case 4:
+                setLoaded(true);
+
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -93,6 +101,11 @@ function Provider(_ref) {
 
     getSession(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!loaded) {
+    return /*#__PURE__*/React.createElement(AppLoadingSpinner, null);
+  }
+
   return /*#__PURE__*/React.createElement(Context.Provider, {
     value: {
       currentUser: currentUser,
