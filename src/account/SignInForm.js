@@ -13,8 +13,11 @@ function setErrorsFromResponse(setError) {
       const message = "Your username or password has not been recognised.";
       setError("login", { type: "manual", message });
       setError("password", { type: "manual", message });
-    } else if (response.status === 502 || response.status == null) {
+    } else if (response.status === 404 || response.status === 502 || response.status == null) {
       const message = "Unable to contact login service.";
+      setError("base", { type: "manual", message });
+    } else {
+      const message = "Unexpected error when contacting login service.";
       setError("base", { type: "manual", message });
     }
   }

@@ -21,11 +21,17 @@ function setErrorsFromResponse(setError) {
         type: "manual",
         message: message
       });
-    } else if (response.status === 502 || response.status == null) {
+    } else if (response.status === 404 || response.status === 502 || response.status == null) {
       var _message = "Unable to contact login service.";
       setError("base", {
         type: "manual",
         message: _message
+      });
+    } else {
+      var _message2 = "Unexpected error when contacting login service.";
+      setError("base", {
+        type: "manual",
+        message: _message2
       });
     }
   };
