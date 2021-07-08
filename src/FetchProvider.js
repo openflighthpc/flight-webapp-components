@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Provider } from 'use-http';
+import React, { useContext, useEffect } from 'react';
+import { useFetch, Provider } from 'use-http';
 
 import { Context as ConfigContext } from './ConfigContext';
 import { Context as CurrentUserContext } from './account/CurrentUserContext';
@@ -32,10 +32,35 @@ function FetchProvider({ children, cachePolicy }) {
       options={options}
       url={apiRootUrl}
     >
+      <CacheClearer />
       {children}
     </Provider>
   );
 }
 
+
+export function useClearCache() {
+  const { cache: memoryCache } = useFetch({ persist: false });
+  const { cache: storageCache } = useFetch({ persist: true, cachePolicy: 'cache-first' });
+
+  return function() {
+    memoryCache.clear();
+    storageCache.clear();
+  };
+}
+
+// This is a separate component than FetchProvider so that it is rendered
+// inside of `use-http`'s `Provider`.
+function CacheClearer() {
+  const clearCache = useClearCache();
+
+  useEffect(() => {
+    window.addEventListener('signout', () => {
+      clearCache();
+    });
+  }, []);
+
+  return null;
+}
 
 export default FetchProvider;

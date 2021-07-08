@@ -12,6 +12,7 @@ export { default as AuthenticatedRoute } from './AuthenticatedRoute';
 export { default as BrandBar } from './BrandBar';
 export { default as ConfirmedActionButton } from './ConfirmedActionButton';
 export { default as FetchProvider } from './FetchProvider';
+export * from './FetchProvider';
 export { default as Footer } from './Footer';
 export { default as FullscreenButton } from './FullscreenButton';
 export { default as Spinner } from './Spinner';
