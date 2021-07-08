@@ -2,8 +2,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-import React, { useContext } from 'react';
-import { Provider } from 'use-http';
+import React, { useContext, useEffect } from 'react';
+import { useFetch, Provider } from 'use-http';
 import { Context as ConfigContext } from './ConfigContext';
 import { Context as CurrentUserContext } from './account/CurrentUserContext';
 
@@ -65,7 +65,36 @@ function FetchProvider(_ref) {
   return /*#__PURE__*/React.createElement(Provider, {
     options: options,
     url: apiRootUrl
-  }, children);
+  }, /*#__PURE__*/React.createElement(CacheClearer, null), children);
+}
+
+export function useClearCache() {
+  var _useFetch = useFetch({
+    persist: false
+  }),
+      memoryCache = _useFetch.cache;
+
+  var _useFetch2 = useFetch({
+    persist: true,
+    cachePolicy: 'cache-first'
+  }),
+      storageCache = _useFetch2.cache;
+
+  return function () {
+    memoryCache.clear();
+    storageCache.clear();
+  };
+} // This is a separate component than FetchProvider so that it is rendered
+// inside of `use-http`'s `Provider`.
+
+function CacheClearer() {
+  var clearCache = useClearCache();
+  useEffect(function () {
+    window.addEventListener('signout', function () {
+      clearCache();
+    });
+  }, []);
+  return null;
 }
 
 export default FetchProvider;
