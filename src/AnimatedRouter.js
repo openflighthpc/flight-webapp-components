@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import ErrorBoundary from './ErrorBoundary';
 
-function AnimatedRouter({ AuthenticatedRoute, Redirect, Route, exact, routes, sideNav }) {
+function AnimatedRouter({ AuthenticatedRoute, Redirect, Route, Switch, exact, routes, sideNav }) {
   const SideNav = sideNav;
   const pageRef = useRef(null);
   useEffect(() => {
@@ -16,7 +16,7 @@ function AnimatedRouter({ AuthenticatedRoute, Redirect, Route, exact, routes, si
   }, []);
 
   return (
-    <React.Fragment>
+    <Switch>
       {routes.map(({ path, Component, authenticated, sideNav }) => {
         const MyRoute = authenticated ? AuthenticatedRoute : Route;
         return (
@@ -56,7 +56,7 @@ function AnimatedRouter({ AuthenticatedRoute, Redirect, Route, exact, routes, si
           </MyRoute>
         );
       })}
-    </React.Fragment>
+    </Switch>
   );
 }
 

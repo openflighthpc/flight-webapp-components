@@ -7,6 +7,7 @@ function AnimatedRouter(_ref) {
   var AuthenticatedRoute = _ref.AuthenticatedRoute,
       Redirect = _ref.Redirect,
       Route = _ref.Route,
+      Switch = _ref.Switch,
       exact = _ref.exact,
       routes = _ref.routes,
       sideNav = _ref.sideNav;
@@ -19,7 +20,7 @@ function AnimatedRouter(_ref) {
       pageRef.current.classList.add('page-enter-done');
     }
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, routes.map(function (_ref2) {
+  return /*#__PURE__*/React.createElement(Switch, null, routes.map(function (_ref2) {
     var path = _ref2.path,
         Component = _ref2.Component,
         authenticated = _ref2.authenticated,
