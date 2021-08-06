@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import classNames from 'classnames';
 import ErrorBoundary from './ErrorBoundary';
 
@@ -10,8 +10,10 @@ function AnimatedRouter(_ref) {
       Switch = _ref.Switch,
       exact = _ref.exact,
       routes = _ref.routes,
-      sideNav = _ref.sideNav;
+      sideNav = _ref.sideNav,
+      useLocation = _ref.useLocation;
   var SideNav = sideNav;
+  var location = useLocation();
   var pageRef = useRef(null);
   useEffect(function () {
     if (pageRef.current != null) {
@@ -20,7 +22,13 @@ function AnimatedRouter(_ref) {
       pageRef.current.classList.add('page-enter-done');
     }
   }, []);
-  return /*#__PURE__*/React.createElement(Switch, null, routes.map(function (_ref2) {
+  return /*#__PURE__*/React.createElement(TransitionGroup, null, /*#__PURE__*/React.createElement(CSSTransition, {
+    key: location.key,
+    timeout: 300,
+    classNames: "page"
+  }, /*#__PURE__*/React.createElement(Switch, {
+    location: location
+  }, routes.map(function (_ref2) {
     var path = _ref2.path,
         Component = _ref2.Component,
         authenticated = _ref2.authenticated,
@@ -32,27 +40,19 @@ function AnimatedRouter(_ref) {
       exact: exact,
       key: path,
       path: path
-    }, function (_ref3) {
-      var match = _ref3.match;
-      return /*#__PURE__*/React.createElement(CSSTransition, {
-        "in": match != null,
-        timeout: 300,
-        classNames: "page",
-        unmountOnExit: true
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "page row",
-        ref: pageRef
-      }, /*#__PURE__*/React.createElement(ErrorBoundary, null, sideNav ? /*#__PURE__*/React.createElement(SideNav, null) : null, /*#__PURE__*/React.createElement("div", {
-        className: classNames("centernav mt-4 col-12", {
-          "col-md-9": sideNav,
-          "col-lg-8": sideNav,
-          "offset-md-0": sideNav,
-          "offset-lg-0": sideNav,
-          "mt-4": sideNav
-        })
-      }, /*#__PURE__*/React.createElement(Component, null)), sideNav ? /*#__PURE__*/React.createElement(SideNav, null) : null)));
-    });
-  }));
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "page row",
+      ref: pageRef
+    }, /*#__PURE__*/React.createElement(ErrorBoundary, null, sideNav ? /*#__PURE__*/React.createElement(SideNav, null) : null, /*#__PURE__*/React.createElement("div", {
+      className: classNames("centernav mt-4 col-12", {
+        "col-md-9": sideNav,
+        "col-lg-8": sideNav,
+        "offset-md-0": sideNav,
+        "offset-lg-0": sideNav,
+        "mt-4": sideNav
+      })
+    }, /*#__PURE__*/React.createElement(Component, null)), sideNav ? /*#__PURE__*/React.createElement(SideNav, null) : null)));
+  }))));
 }
 
 export default AnimatedRouter;
