@@ -7,6 +7,7 @@ export * from './Overlay';
 export * from './Spinner';
 export * from './useMedia';
 export { Context as ConfigContext, Provider as ConfigProvider } from './ConfigContext';
+export { default as ActionButton } from './ActionButton';
 export { default as AnimatedRouter } from './AnimatedRouter';
 export { default as AuthenticatedRoute } from './AuthenticatedRoute';
 export { default as BrandBar } from './BrandBar';
