@@ -29,7 +29,8 @@ function AnimatedRouter(_ref) {
   }, /*#__PURE__*/React.createElement(Switch, {
     location: location
   }, routes.map(function (_ref2) {
-    var path = _ref2.path,
+    var key = _ref2.key,
+        path = _ref2.path,
         Component = _ref2.Component,
         authenticated = _ref2.authenticated,
         sideNav = _ref2.sideNav;
@@ -38,7 +39,7 @@ function AnimatedRouter(_ref) {
       Redirect: Redirect,
       Route: Route,
       exact: exact,
-      key: path,
+      key: key || path,
       path: path
     }, /*#__PURE__*/React.createElement("div", {
       className: "page row",
