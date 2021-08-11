@@ -33,14 +33,14 @@ function AnimatedRouter({
         classNames="page"
       >
         <Switch location={location} >
-          {routes.map(({ path, Component, authenticated, sideNav }) => {
+          {routes.map(({ key, path, Component, authenticated, sideNav }) => {
             const MyRoute = authenticated ? AuthenticatedRoute : Route;
             return (
               <MyRoute
                 Redirect={Redirect}
                 Route={Route}
                 exact={exact}
-                key={path}
+                key={key || path}
                 path={path}
               >
                 <div className="page row" ref={pageRef}>
