@@ -5,15 +5,12 @@ set -euo pipefail
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 VERSION_FILE="${REPO_ROOT}/package.json"
 PACKAGE_NAME=$(cat "${REPO_ROOT}/package.json" | jq -r .name )
-# BUCKET_PREFIX="alces-flight/FlightReactware"
 
 main() {
     parse_arguments "$@"
     header "Checking repo is clean"
     abort_if_uncommitted_changes_present
     abort_if_not_uptodate_with_remotes
-    # header "Checking version"
-    # abort_if_new_version_exists
     subheader "Creating release branch"
     checkout_release_branch
     if $BUMP_VERSION ; then
@@ -22,9 +19,8 @@ main() {
         commit_version_bump
     fi
     header "Building"
-    build_and_pack
-    # header "Releasing to s3"
-    # release_to_s3
+    build
+    abort_if_uncommitted_changes_present
     header "Merging, tagging, and pushing"
     run_merge_script
 }
@@ -72,15 +68,6 @@ abort_if_not_uptodate_with_remote() {
     fi
 }
 
-# abort_if_new_version_exists() {
-#     local new_version
-#     new_version=$(get_new_version)
-#     if aws s3 ls s3://${BUCKET_PREFIX}/${new_version} ; then
-#         echo "Version ${new_version} already exits on AWS"
-#         exit 6
-#     fi
-# }
-
 get_current_version() {
     cat package.json \
         | jq -r .version
@@ -107,17 +94,10 @@ commit_version_bump() {
     git commit -m "Bump version to $(get_current_version)" "${VERSION_FILE}"
 }
 
-build_and_pack() {
+build() {
     yarn run clean
     yarn run build
-    yarn pack
 }
-
-# release_to_s3() {
-#     aws s3 cp --acl public-read \
-#         ${PACKAGE_NAME}-v$(get_current_version).tgz \
-#         s3://${BUCKET_PREFIX}/$(get_current_version)/${PACKAGE_NAME}.tgz
-# }
 
 run_merge_script() {
     "${REPO_ROOT}"/bin/merge-and-tag-release.sh "$(get_current_version)"
