@@ -18,6 +18,8 @@ function ConfirmedActionButton(_ref) {
       acting = _ref.acting,
       actingButtonText = _ref.actingButtonText,
       buttonText = _ref.buttonText,
+      _ref$cancelButtonText = _ref.cancelButtonText,
+      cancelButtonText = _ref$cancelButtonText === void 0 ? "Cancel" : _ref$cancelButtonText,
       className = _ref.className,
       confirmationHeaderText = _ref.confirmationHeaderText,
       confirmationText = _ref.confirmationText,
@@ -52,7 +54,7 @@ function ConfirmedActionButton(_ref) {
     className: "mr-2",
     onClick: toggle,
     size: "sm"
-  }, "Cancel"), /*#__PURE__*/React.createElement(Button, {
+  }, cancelButtonText), /*#__PURE__*/React.createElement(Button, {
     color: "danger",
     onClick: function onClick() {
       toggle();
