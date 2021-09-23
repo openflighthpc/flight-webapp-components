@@ -12,6 +12,7 @@ function ConfirmedActionButton({
   acting,
   actingButtonText,
   buttonText,
+  cancelButtonText="Cancel",
   className,
   confirmationHeaderText,
   confirmationText,
@@ -52,7 +53,7 @@ function ConfirmedActionButton({
               onClick={toggle}
               size="sm"
             >
-              Cancel
+              {cancelButtonText}
             </Button>
             <Button
               color="danger"
