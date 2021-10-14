@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import classNames from 'classnames';
 
 import ErrorBoundary from './ErrorBoundary';
+import SideNav from './SideNav';
 
 function AnimatedRouter({
   AuthenticatedRoute,
@@ -11,10 +12,8 @@ function AnimatedRouter({
   Switch,
   exact,
   routes,
-  sideNav,
   useLocation,
 }) {
-  const SideNav = sideNav;
   const location = useLocation();
   const pageRef = useRef(null);
   useEffect(() => {
@@ -57,7 +56,6 @@ function AnimatedRouter({
                     >
                       <Component />
                     </div>
-                    { sideNav ? <SideNav /> : null }
                   </ErrorBoundary>
                 </div>
               </MyRoute>
