@@ -17,18 +17,15 @@ export function BrandbarLogo() {
     height: logo.height
   });
 }
-export function BrandbarText() {
+export function BrandbarHomeNav() {
   var branding = useBranding();
-
-  if (branding('brandbar.text')) {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "branding-brandbar-text-wrapper"
-    }, /*#__PURE__*/React.createElement("span", {
-      className: "branding-brandbar-text"
-    }, branding('brandbar.text')));
-  } else {
-    return null;
-  }
+  var environment = useEnvironment();
+  return /*#__PURE__*/React.createElement("li", {
+    className: "nav-item"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "nav-link nav-menu-button",
+    href: "/"
+  }, branding('brandbar.home_link_text') || environment('environment.name') || environment('organisation.name') || 'Home'));
 }
 export function DashboardLogo() {
   var branding = useBranding();
@@ -43,16 +40,6 @@ export function DashboardLogo() {
     className: classNames('logo', logo.classNames, 'branding-apps-dashboard-logo'),
     src: logo.url
   }));
-}
-export function ClusterDescription() {
-  var environment = useEnvironment();
-  var description = environment('environment.description');
-
-  if (description) {
-    return /*#__PURE__*/React.createElement("p", null, description);
-  } else {
-    return null;
-  }
 }
 export function ClusterLogo() {
   var environment = useEnvironment();
