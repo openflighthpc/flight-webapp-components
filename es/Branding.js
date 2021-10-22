@@ -40,20 +40,6 @@ export function DashboardLogo() {
     className: classNames('logo', logo.classNames, 'branding-apps-dashboard-logo'),
     src: logo.url
   }));
-}
-export function ClusterLogo() {
-  var environment = useEnvironment();
-  var logo = environment('environment.logo');
-
-  if (logo) {
-    return /*#__PURE__*/React.createElement("img", {
-      alt: logo.alt,
-      className: classNames('logo', logo.classNames),
-      src: logo.url
-    });
-  } else {
-    return null;
-  }
 } // function UnbreakableImg({ src }) {
 //   const [ loaded, setLoaded ] = useState(false);
 //   const classes = `mw-100 mx-auto mb-3`;
