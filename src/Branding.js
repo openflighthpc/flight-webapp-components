@@ -66,23 +66,6 @@ export function DashboardLogo() {
   );
 }
 
-export function ClusterLogo() {
-  const environment = useEnvironment();
-  const logo = environment('environment.logo');
-
-  if (logo) {
-    return (
-      <img
-        alt={logo.alt}
-        className={classNames('logo', logo.classNames)}
-        src={logo.url}
-      />
-    );
-  } else {
-    return null;
-  }
-}
-
 // function UnbreakableImg({ src }) {
 //   const [ loaded, setLoaded ] = useState(false);
 //   const classes = `mw-100 mx-auto mb-3`;
