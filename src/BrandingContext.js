@@ -73,7 +73,7 @@ const {
 const {
   Context: DataContext,
   Provider: DataProvider,
-  useData: useData,
+  useData,
 } = makeDataContext(process.env.REACT_APP_DATA_FILE);
 
 
