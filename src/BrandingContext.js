@@ -42,6 +42,9 @@ function makeDataContext(url) {
     return lookup;
 
     function lookup(dottedKey) {
+      if (dottedKey == null || dottedKey === "") {
+        return data
+      }
       const keys = dottedKey.split('.');
       return keys.reduce(
         (accum, key) => {
@@ -67,13 +70,21 @@ const {
   Provider: EnvironmentProvider,
   useData: useEnvironment,
 } = makeDataContext(process.env.REACT_APP_ENVIRONMENT_FILE);
+const {
+  Context: DataContext,
+  Provider: DataProvider,
+  useData,
+} = makeDataContext(process.env.REACT_APP_DATA_FILE);
 
 
 export {
   BrandingContext,
   BrandingProvider,
+  DataContext,
+  DataProvider,
   EnvironmentContext,
   EnvironmentProvider,
   useBranding,
+  useData,
   useEnvironment,
 }

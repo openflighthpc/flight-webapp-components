@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import classNames from 'classnames';
 import ErrorBoundary from './ErrorBoundary';
+import SideNav from './SideNav';
 
 function AnimatedRouter(_ref) {
   var AuthenticatedRoute = _ref.AuthenticatedRoute,
@@ -10,9 +11,7 @@ function AnimatedRouter(_ref) {
       Switch = _ref.Switch,
       exact = _ref.exact,
       routes = _ref.routes,
-      sideNav = _ref.sideNav,
       useLocation = _ref.useLocation;
-  var SideNav = sideNav;
   var location = useLocation();
   var pageRef = useRef(null);
   useEffect(function () {
@@ -52,7 +51,7 @@ function AnimatedRouter(_ref) {
         "offset-lg-0": sideNav,
         "mt-4": sideNav
       })
-    }, /*#__PURE__*/React.createElement(Component, null)), sideNav ? /*#__PURE__*/React.createElement(SideNav, null) : null)));
+    }, /*#__PURE__*/React.createElement(Component, null)))));
   }))));
 }
 

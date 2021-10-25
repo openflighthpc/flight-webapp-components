@@ -23,20 +23,25 @@ export function BrandbarLogo() {
   );
 }
 
-export function BrandbarText() {
+export function BrandbarHomeNav() {
   const branding = useBranding();
+  const environment = useEnvironment();
 
-  if (branding('brandbar.text')) {
-    return (
-      <div className="branding-brandbar-text-wrapper">
-        <span className="branding-brandbar-text">
-          {branding('brandbar.text')}
-        </span>
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <li className="nav-item">
+      <a
+        className="nav-link nav-menu-button"
+        href="/"
+      >
+        {
+          branding('brandbar.home_link_text') ||
+            environment('environment.name') ||
+            environment('organisation.name') ||
+            'Home'
+        }
+      </a>
+    </li>
+  );
 }
 
 export function DashboardLogo() {
@@ -59,34 +64,6 @@ export function DashboardLogo() {
       />
     </div>
   );
-}
-
-export function ClusterDescription() {
-  const environment = useEnvironment();
-  const description = environment('environment.description');
-
-  if (description) {
-    return <p>{description}</p>;
-  } else {
-    return null;
-  }
-}
-
-export function ClusterLogo() {
-  const environment = useEnvironment();
-  const logo = environment('environment.logo');
-
-  if (logo) {
-    return (
-      <img
-        alt={logo.alt}
-        className={classNames('logo', logo.classNames)}
-        src={logo.url}
-      />
-    );
-  } else {
-    return null;
-  }
 }
 
 // function UnbreakableImg({ src }) {

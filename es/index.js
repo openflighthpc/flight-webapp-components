@@ -18,6 +18,7 @@ export { default as FetchProvider } from './FetchProvider';
 export { default as Footer } from './Footer';
 export { default as FullscreenButton } from './FullscreenButton';
 export { default as NotFound } from './NotFound';
+export { default as ProductBar } from './ProductBar';
 export { default as Spinner } from './Spinner';
 export { default as UnauthorizedError } from './UnauthorizedError';
 export { default as useEventListener } from './useEventListener'; // Export a subset of the account modules.

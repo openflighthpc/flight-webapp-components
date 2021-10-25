@@ -41,6 +41,10 @@ function makeDataContext(url) {
     return lookup;
 
     function lookup(dottedKey) {
+      if (dottedKey == null || dottedKey === "") {
+        return data;
+      }
+
       var keys = dottedKey.split('.');
       return keys.reduce(function (accum, key) {
         if (isObject(accum)) {
@@ -63,4 +67,9 @@ var _makeDataContext2 = makeDataContext(process.env.REACT_APP_ENVIRONMENT_FILE),
     EnvironmentProvider = _makeDataContext2.Provider,
     useEnvironment = _makeDataContext2.useData;
 
-export { BrandingContext, BrandingProvider, EnvironmentContext, EnvironmentProvider, useBranding, useEnvironment };
+var _makeDataContext3 = makeDataContext(process.env.REACT_APP_DATA_FILE),
+    DataContext = _makeDataContext3.Context,
+    DataProvider = _makeDataContext3.Provider,
+    useData = _makeDataContext3.useData;
+
+export { BrandingContext, BrandingProvider, DataContext, DataProvider, EnvironmentContext, EnvironmentProvider, useBranding, useData, useEnvironment };
