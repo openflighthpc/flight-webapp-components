@@ -29,13 +29,13 @@ function BrandBarItems(_ref2) {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement("a", {
     className: "nav-link nav-menu-button",
-    href: "/apps"
-  }, "Web Suite"));
+    href: data('apps_link.path') || "/apps"
+  }, data('apps_link.text') || "Web Suite"));
   var packsLink = /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement("a", {
     className: "nav-link nav-menu-button",
-    href: "/config-packs"
-  }, "Config Packs"));
+    href: data('config_packs_link.path') || "/config-packs"
+  }, data('config_packs_link.text') || "Config Packs"));
   return /*#__PURE__*/React.createElement(React.Fragment, null, hasApps ? appsLink : null, hasPacks ? packsLink : null);
 }
