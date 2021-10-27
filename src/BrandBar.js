@@ -36,9 +36,9 @@ function BrandBarItems({ className }) {
     <li className="nav-item">
       <a
         className="nav-link nav-menu-button"
-        href="/apps"
+        href={data('apps_link.path') || "/apps"}
       >
-        Web Suite
+        {data('apps_link.text') || "Web Suite"}
       </a>
     </li>
   );
@@ -46,9 +46,9 @@ function BrandBarItems({ className }) {
     <li className="nav-item">
       <a
         className="nav-link nav-menu-button"
-        href="/config-packs"
+        href={data('config_packs_link.path') || "/config-packs"}
       >
-        Config Packs
+        {data('config_packs_link.text') || "Config Packs"}
       </a>
     </li>
 
