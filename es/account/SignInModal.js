@@ -14,13 +14,15 @@ import React, { useRef, useState } from 'react';
 import StandardModal from './StandardModal';
 import StatefulButton from './StatefulButton';
 import SignInForm from './SignInForm';
-import { useEnvironment } from '../BrandingContext';
+import { useBranding, useEnvironment } from '../BrandingContext';
 
 function SignInModal(_ref) {
   var toggle = _ref.toggle,
       isOpen = _ref.isOpen;
   var environment = useEnvironment();
   var envName = environment('environment.name') || 'your environment';
+  var branding = useBranding();
+  var formText = branding('apps.signInModal.text');
   var formApi = useRef(null);
 
   var _useState = useState(false),
@@ -45,7 +47,8 @@ function SignInModal(_ref) {
   }, /*#__PURE__*/React.createElement(SignInForm, {
     ref: formApi,
     onSubmitting: setIsSubmitting,
-    onSuccess: toggle
+    onSuccess: toggle,
+    formText: formText
   }));
 }
 

@@ -23,7 +23,7 @@ function setErrorsFromResponse(setError) {
   }
 }
 
-function Form({ login, onSubmitting, onSuccess, }, apiRef) {
+function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
   const { register, handleSubmit, errors, formState, clearErrors, setError } = useForm({
     mode: 'all',
   });
@@ -35,6 +35,13 @@ function Form({ login, onSubmitting, onSuccess, }, apiRef) {
     clearErrors('base');
     return handleSubmit(signIn)(...args);
   };
+
+  const modalText = formText || `
+    Sign in to your OpenFlightHPC environment account.  You'll need your
+    account username and password.  Contact your HPC administrator if you
+    don't have these details or need a reminder.
+  `
+
   useEffect(() => { onSubmitting(loading); }, [loading, onSubmitting]);
 
   // API exported by this component to allow for programatic submitting.
@@ -48,9 +55,7 @@ function Form({ login, onSubmitting, onSuccess, }, apiRef) {
   return (
     <form onSubmit={submit}>
       <FormText className="mb-2">
-        Sign in to your OpenFlightHPC environment account.  You'll need your
-        account username and password.  Contact your HPC administrator if you
-        don't have these details or need a reminder.
+	{formText}
       </FormText>
       {
         errors.base ?
