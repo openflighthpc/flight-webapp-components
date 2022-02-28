@@ -14,8 +14,8 @@ export default function BrandBar({ className, navItems }) {
       >
         <BrandbarLogo />
       </a>
-      <div className="collapse navbar-collapse">
-        <ul className="navbar-nav mr-auto">
+      <div className="collapse navbar-collapse" id="navbarNavContainer">
+        <ul className="navbar-nav">
           <BrandbarHomeNav />
           <BrandBarItems />
         </ul>

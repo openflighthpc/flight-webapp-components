@@ -3294,9 +3294,10 @@ urs@^0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/urs/-/urs-0.0.8.tgz#8a0e0b792073cdb7eec926d08ab1e017ffab3f66"
 
-use-http@^1.0.16:
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/use-http/-/use-http-1.0.21.tgz#e2c3c83becf9c7afceed95e33f52b85f61993c61"
+use-http@^1.0.21:
+  version "1.0.26"
+  resolved "https://registry.yarnpkg.com/use-http/-/use-http-1.0.26.tgz#04faaa21a0389ff177531c7dfc2d73f021e6f3c4"
+  integrity sha512-yB0dXX2S0Doyiti/kHqMsvlShL3tlI8YkoEARao1OVFKrGvyXejmWvrYkEI+oVTPvUqGzOsHbNROY0qKDC88Pg==
   dependencies:
     urs "^0.0.8"
     use-ssr "^1.0.24"
