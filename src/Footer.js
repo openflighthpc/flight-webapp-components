@@ -1,13 +1,17 @@
 import React from 'react';
 
+import { useBranding } from './BrandingContext';
+
 function Footer() {
-  const year = new Date().getFullYear();
+  const branding = useBranding();
+  const year = branding("copyright.year") || new Date().getFullYear();
+  const text = branding("copyright.text") || "openflightHPC";
 
   return (
     <footer className="footer border-top">
       <div className="container">
         <span className="text-muted float-left">
-          Copyright {year} openflightHPC
+          &copy; {year} {text}
         </span>
       </div>
     </footer>

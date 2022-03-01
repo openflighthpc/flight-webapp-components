@@ -6,8 +6,8 @@ export default function ProductBar(_ref) {
   return /*#__PURE__*/React.createElement("nav", {
     className: classNames('navbar navbar-expand-lg productbar navbar-dark', className)
   }, /*#__PURE__*/React.createElement("div", {
-    className: "collapse navbar-collapse"
+    className: "collapse navbar-collapse navbar-nav-container"
   }, /*#__PURE__*/React.createElement("ul", {
-    className: "navbar-nav mr-auto"
+    className: "navbar-nav"
   }, navItems)));
 }

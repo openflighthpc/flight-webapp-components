@@ -12,10 +12,10 @@ export default function BrandBar(_ref) {
     className: "navbar-brand",
     href: "/"
   }, /*#__PURE__*/React.createElement(BrandbarLogo, null)), /*#__PURE__*/React.createElement("div", {
-    className: "collapse navbar-collapse"
+    className: "collapse navbar-collapse navbar-nav-container"
   }, /*#__PURE__*/React.createElement("ul", {
-    className: "navbar-nav mr-auto"
-  }, /*#__PURE__*/React.createElement(BrandbarHomeNav, null), /*#__PURE__*/React.createElement(BrandBarItems, null)), /*#__PURE__*/React.createElement("ul", {
+    className: "navbar-nav"
+  }, /*#__PURE__*/React.createElement(BrandbarHomeNav, null), /*#__PURE__*/React.createElement(BrandBarItems, null), navItems), /*#__PURE__*/React.createElement("ul", {
     className: "navbar-nav"
   }, /*#__PURE__*/React.createElement(AccountMenu, null))));
 }
