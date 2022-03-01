@@ -14,10 +14,11 @@ export default function BrandBar({ className, navItems }) {
       >
         <BrandbarLogo />
       </a>
-      <div className="collapse navbar-collapse" id="navbarNavContainer">
+      <div className="collapse navbar-collapse navbar-nav-container">
         <ul className="navbar-nav">
           <BrandbarHomeNav />
           <BrandBarItems />
+          {navItems}
         </ul>
         <ul className="navbar-nav">
           <AccountMenu />

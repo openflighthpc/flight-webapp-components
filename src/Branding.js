@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import DefaultBrandbarLogo from '../dist/images/png_trans_logo-navbar.png';
 import DefaultDashboardLogo from '../dist/images/png_trans_logo.png';
-import { useBranding, useEnvironment } from './BrandingContext';
+import { useBranding, useData, useEnvironment } from './BrandingContext';
 
 export function BrandbarLogo() {
   const branding = useBranding();
@@ -24,6 +24,7 @@ export function BrandbarLogo() {
 }
 
 export function BrandbarHomeNav() {
+  const data = useData();
   const branding = useBranding();
   const environment = useEnvironment();
 
@@ -31,10 +32,11 @@ export function BrandbarHomeNav() {
     <li className="nav-item">
       <a
         className="nav-link nav-menu-button"
-        href="/"
+        href={data('home_link.path') || "/"}
       >
         {
-          branding('brandbar.home_link_text') ||
+          data('home_link.text') ||
+          branding('brandbar.home_link.text') ||
             environment('environment.name') ||
             environment('organisation.name') ||
             'Home'

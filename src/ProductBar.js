@@ -6,7 +6,7 @@ export default function ProductBar({ className, navItems }) {
     <nav className={
       classNames('navbar navbar-expand-lg productbar navbar-dark', className)
     }>
-      <div className="collapse navbar-collapse">
+      <div className="collapse navbar-collapse navbar-nav-container">
         <ul className="navbar-nav">
           {navItems}
         </ul>
