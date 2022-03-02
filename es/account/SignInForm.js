@@ -8,6 +8,7 @@ var styles = {
   "formFeedback_base": "feedback-module__formFeedback_base___2S9g7"
 };
 import { useSignIn } from './actions';
+import { useBranding } from '../BrandingContext';
 
 function setErrorsFromResponse(setError) {
   return function (body, response) {
@@ -37,11 +38,14 @@ function setErrorsFromResponse(setError) {
   };
 }
 
+var defaultFormText = "\n  Sign in to your OpenFlightHPC environment account.  You'll need your\n  account username and password.  Contact your HPC administrator if you\n  don't have these details or need a reminder.\n";
+
 function Form(_ref, apiRef) {
   var formText = _ref.formText,
       login = _ref.login,
       onSubmitting = _ref.onSubmitting,
       onSuccess = _ref.onSuccess;
+  var branding = useBranding();
 
   var _useForm = useForm({
     mode: 'all'
@@ -65,7 +69,6 @@ function Form(_ref, apiRef) {
     return handleSubmit(signIn).apply(void 0, arguments);
   };
 
-  var modalText = formText || "\n    Sign in to your OpenFlightHPC environment account.  You'll need your\n    account username and password.  Contact your HPC administrator if you\n    don't have these details or need a reminder.\n  ";
   useEffect(function () {
     onSubmitting(loading);
   }, [loading, onSubmitting]); // API exported by this component to allow for programatic submitting.
@@ -80,7 +83,7 @@ function Form(_ref, apiRef) {
     onSubmit: submit
   }, /*#__PURE__*/React.createElement(FormText, {
     className: "mb-2"
-  }, formText), errors.base ? /*#__PURE__*/React.createElement(FormFeedback, {
+  }, branding('signInModal.text') || defaultFormText), errors.base ? /*#__PURE__*/React.createElement(FormFeedback, {
     className: classNames(styles.formFeedback, styles.formFeedback_base)
   }, errors.base.message) : null, /*#__PURE__*/React.createElement(FormInput, {
     label: "Enter your username",
