@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import FormInput from './FormInput';
 import styles from './feedback.module.css';
 import { useSignIn } from './actions';
+import { useBranding } from '../BrandingContext';
 
 function setErrorsFromResponse(setError) {
   return function(body, response) {
@@ -23,7 +24,14 @@ function setErrorsFromResponse(setError) {
   }
 }
 
+const defaultFormText = `
+  Sign in to your OpenFlightHPC environment account.  You'll need your
+  account username and password.  Contact your HPC administrator if you
+  don't have these details or need a reminder.
+`;
+
 function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
+  const branding = useBranding();
   const { register, handleSubmit, errors, formState, clearErrors, setError } = useForm({
     mode: 'all',
   });
@@ -35,12 +43,6 @@ function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
     clearErrors('base');
     return handleSubmit(signIn)(...args);
   };
-
-  const modalText = formText || `
-    Sign in to your OpenFlightHPC environment account.  You'll need your
-    account username and password.  Contact your HPC administrator if you
-    don't have these details or need a reminder.
-  `
 
   useEffect(() => { onSubmitting(loading); }, [loading, onSubmitting]);
 
@@ -55,7 +57,7 @@ function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
   return (
     <form onSubmit={submit}>
       <FormText className="mb-2">
-	{formText}
+	{branding('signInModal.text') || defaultFormText}
       </FormText>
       {
         errors.base ?
