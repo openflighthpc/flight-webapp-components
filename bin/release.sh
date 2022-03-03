@@ -74,7 +74,9 @@ get_current_version() {
 }
 
 get_new_version() {
-    if $BUMP_VERSION ; then
+    if [ -n "${NEW_VERSION}" ] ; then
+        echo ${NEW_VERSION}
+    elif $BUMP_VERSION ; then
         get_current_version \
             | awk 'BEGIN { FS="." } { print $1 "." $2 "." $3 + 1 }'
     else
@@ -126,6 +128,7 @@ usage() {
 }
 
 BUMP_VERSION=true
+NEW_VERSION=
 
 parse_arguments() {
     while [[ $# > 0 ]] ; do
@@ -139,6 +142,12 @@ parse_arguments() {
 
             --skip-version-bump)
                 BUMP_VERSION=false
+                shift
+                ;;
+
+            --version)
+                NEW_VERSION=$2
+                shift
                 shift
                 ;;
 
