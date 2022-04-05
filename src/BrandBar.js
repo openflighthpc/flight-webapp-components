@@ -1,8 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import AccountMenu from './account/Menu';
 import { BrandbarLogo, BrandbarHomeNav } from './Branding';
@@ -42,12 +40,15 @@ function BrandBarItems({ className }) {
   };
 
   const dropdownItems = data('apps').map(function(app, i) {
-      return <Dropdown.Item href={app.path}> {app.short_title || app.title} </Dropdown.Item>
+      return <DropdownItem href={app.path}> {app.short_title || app.title} </DropdownItem>
   });
+
+  const [dropdownOpen, setOpen] = React.useState(false);
+  const toggle = () => setOpen(!dropdownOpen);
 
   const appsLink = (
     <li className="nav-item">
-      <Dropdown as={ButtonGroup}>
+      <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
         <a
           className="nav-link nav-menu-button"
           href={data('apps_link.path') || "/apps"}
@@ -55,12 +56,12 @@ function BrandBarItems({ className }) {
           {data('apps_link.text') || "Web Suite"}
         </a>
 
-        <Dropdown.Toggle as={"a"} type="button" style={toggleCss} split />
+        <DropdownToggle tag={"a"} type="button" style={toggleCss} split />
 
-        <Dropdown.Menu>
+        <DropdownMenu>
 	  {dropdownItems}
-        </Dropdown.Menu>
-      </Dropdown>
+        </DropdownMenu>
+      </ButtonDropdown>
     </li>
   );
 
