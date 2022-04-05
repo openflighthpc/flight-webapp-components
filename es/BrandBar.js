@@ -1,5 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
 import AccountMenu from './account/Menu';
 import { BrandbarLogo, BrandbarHomeNav } from './Branding';
 import { useData } from './BrandingContext';
@@ -25,12 +28,28 @@ function BrandBarItems(_ref2) {
   var data = useData();
   var hasApps = Array.isArray(data('apps')) && data('apps').length;
   var hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
+  var toggleCss = {
+    display: "flex",
+    alignItems: "center"
+  };
+  var dropdownItems = data('apps').map(function (app, i) {
+    return /*#__PURE__*/React.createElement(Dropdown.Item, {
+      href: app.path
+    }, " ", app.short_title || app.title, " ");
+  });
   var appsLink = /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
+  }, /*#__PURE__*/React.createElement(Dropdown, {
+    as: ButtonGroup
   }, /*#__PURE__*/React.createElement("a", {
     className: "nav-link nav-menu-button",
     href: data('apps_link.path') || "/apps"
-  }, data('apps_link.text') || "Web Suite"));
+  }, data('apps_link.text') || "Web Suite"), /*#__PURE__*/React.createElement(Dropdown.Toggle, {
+    as: "a",
+    type: "button",
+    style: toggleCss,
+    split: true
+  }), /*#__PURE__*/React.createElement(Dropdown.Menu, null, dropdownItems)));
   var packsLink = /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement("a", {
