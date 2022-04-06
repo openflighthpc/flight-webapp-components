@@ -44,8 +44,14 @@ function BrandBarItems(_ref2) {
   };
   var dropdownItems = data('apps').map(function (app, i) {
     return /*#__PURE__*/React.createElement(DropdownItem, {
+      style: {
+        padding: "8px"
+      },
+      key: app,
       href: app.path
-    }, " ", app.short_title || app.title, " ");
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "fa fa-solid fa-fw fa-" + app.fa_icon
+    }), "\xA0", app.short_title || app.title);
   });
 
   var _React$useState = React.useState(false),
@@ -70,7 +76,9 @@ function BrandBarItems(_ref2) {
     type: "button",
     style: toggleCss,
     split: true
-  }), /*#__PURE__*/React.createElement(DropdownMenu, null, dropdownItems)));
+  }), /*#__PURE__*/React.createElement(DropdownMenu, {
+    right: true
+  }, dropdownItems)));
   var packsLink = /*#__PURE__*/React.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/React.createElement("a", {

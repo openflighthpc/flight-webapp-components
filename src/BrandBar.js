@@ -40,7 +40,10 @@ function BrandBarItems({ className }) {
   };
 
   const dropdownItems = data('apps').map(function(app, i) {
-      return <DropdownItem href={app.path}> {app.short_title || app.title} </DropdownItem>
+      return <DropdownItem style={{padding: "8px"}} key={app} href={app.path}>
+	       <span className={"fa fa-solid fa-fw fa-" + app.fa_icon}></span>&nbsp;
+	       {app.short_title || app.title}
+	     </DropdownItem>
   });
 
   const [dropdownOpen, setOpen] = React.useState(false);
@@ -58,7 +61,7 @@ function BrandBarItems({ className }) {
 
         <DropdownToggle tag={"a"} type="button" style={toggleCss} split />
 
-        <DropdownMenu>
+        <DropdownMenu right>
 	  {dropdownItems}
         </DropdownMenu>
       </ButtonDropdown>
