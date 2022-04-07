@@ -27,3 +27,5 @@ export {
   Context as CurrentUserContext,
   Provider as CurrentUserProvider,
 } from './account/CurrentUserContext';
+
+export { default as AccountMenu } from './account/Menu';
