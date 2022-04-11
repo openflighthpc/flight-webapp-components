@@ -1,3 +1,18 @@
+/*  imported from brandbar.module.css  */
+
+.brandbar-module__dropdownItem___3lmKC {
+  padding: 8px;
+  color: white;
+}
+
+.brandbar-module__dropdownItem___3lmKC:hover {
+  color: black;
+}
+
+.brandbar-module__dropdownToggle___2Al68 {
+  display: flex;
+  align-items: center;
+}
 /*  imported from feedback.module.css  */
 
 .feedback-module__formFeedback___pNN0w {

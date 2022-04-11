@@ -16,6 +16,10 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import AccountMenu from './account/Menu';
 import { BrandbarLogo, BrandbarHomeNav } from './Branding';
 import { useData } from './BrandingContext';
+var styles = {
+  "dropdownItem": "brandbar-module__dropdownItem___3lmKC",
+  "dropdownToggle": "brandbar-module__dropdownToggle___2Al68"
+};
 export default function BrandBar(_ref) {
   var className = _ref.className,
       navItems = _ref.navItems;
@@ -38,17 +42,11 @@ function BrandBarItems(_ref2) {
   var data = useData();
   var hasApps = Array.isArray(data('apps')) && data('apps').length;
   var hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
-  var toggleCss = {
-    display: "flex",
-    alignItems: "center"
-  };
   var dropdownItems = data('apps').map(function (app, i) {
     return /*#__PURE__*/React.createElement(DropdownItem, {
-      style: {
-        padding: "8px"
-      },
       key: app,
-      href: app.path
+      href: app.path,
+      className: classNames(styles.dropdownItem)
     }, /*#__PURE__*/React.createElement("span", {
       className: "fa fa-solid fa-fw fa-" + app.fa_icon
     }), "\xA0", app.short_title || app.title);
@@ -64,7 +62,7 @@ function BrandBarItems(_ref2) {
   };
 
   var appsLink = /*#__PURE__*/React.createElement("li", {
-    className: "nav-item"
+    className: "nav-item dropdown"
   }, /*#__PURE__*/React.createElement(ButtonDropdown, {
     isOpen: dropdownOpen,
     toggle: toggle
@@ -74,7 +72,7 @@ function BrandBarItems(_ref2) {
   }, data('apps_link.text') || "Web Suite"), /*#__PURE__*/React.createElement(DropdownToggle, {
     tag: "a",
     type: "button",
-    style: toggleCss,
+    className: classNames(styles.dropdownToggle),
     split: true
   }), /*#__PURE__*/React.createElement(DropdownMenu, {
     right: true
