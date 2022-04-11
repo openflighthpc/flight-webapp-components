@@ -50,7 +50,7 @@ function BrandBarItems({ className }) {
   const toggle = () => setOpen(!dropdownOpen);
 
   const appsLink = (
-    <li className="nav-item">
+    <li className="nav-item dropdown">
       <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
         <a
           className="nav-link nav-menu-button"
