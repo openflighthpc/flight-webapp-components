@@ -5,7 +5,6 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import AccountMenu from './account/Menu';
 import { BrandbarLogo, BrandbarHomeNav } from './Branding';
 import { useData } from './BrandingContext';
-import styles from "./brandbar.module.css";
 
 export default function BrandBar({ className, navItems }) {
   return (
@@ -33,10 +32,11 @@ export default function BrandBar({ className, navItems }) {
 function BrandBarItems({ className }) {
   const data = useData();
   const hasApps = Array.isArray(data('apps')) && data('apps').length;
+  console.log(hasApps);
   const hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
 
   const dropdownItems = data('apps').map(function(app, i) {
-      return <DropdownItem key={app} href={app.path} className={ classNames(styles.dropdownItem)} >
+      return <DropdownItem key={app} href={app.path} >
 	       <span className={"fa fa-solid fa-fw fa-" + app.fa_icon}></span>&nbsp;
 	       {app.short_title || app.title}
 	     </DropdownItem>
@@ -55,7 +55,7 @@ function BrandBarItems({ className }) {
           {data('apps_link.text') || "Web Suite"}
         </a>
 
-        <DropdownToggle tag={"a"} type="button" className={ classNames(styles.dropdownToggle) } split />
+        <DropdownToggle tag={"a"} type="button" split />
 
         <DropdownMenu right>
 	  {dropdownItems}
