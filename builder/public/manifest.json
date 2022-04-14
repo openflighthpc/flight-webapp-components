@@ -1,0 +1,8 @@
+{
+  "short_name": "flight-account-menu",
+  "name": "flight-account-menu",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
