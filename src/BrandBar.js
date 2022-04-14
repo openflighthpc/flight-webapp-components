@@ -32,7 +32,6 @@ export default function BrandBar({ className, navItems }) {
 function BrandBarItems({ className }) {
   const data = useData();
   const hasApps = Array.isArray(data('apps')) && data('apps').length;
-  console.log(hasApps);
   const hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
 
   const dropdownItems = data('apps').map(function(app, i) {
