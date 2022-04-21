@@ -22,10 +22,10 @@ var styles = {
   "userBlock": "styles-module__userBlock___Xd39U"
 };
 import { useSignOut } from './actions';
-var signedInLinks = [];
 
 function SignedIn(_ref) {
-  var currentUser = _ref.currentUser;
+  var currentUser = _ref.currentUser,
+      items = _ref.items;
 
   var _useState = useState(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -40,6 +40,7 @@ function SignedIn(_ref) {
     });
   };
 
+  var signedInLinks = items;
   var avatarUrl = currentUser.avatarUrl;
 
   if (avatarUrl == null) {

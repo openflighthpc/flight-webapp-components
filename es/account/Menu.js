@@ -15,7 +15,9 @@ import { Context as CurrentUserContext } from './CurrentUserContext';
 import SignInModal from './SignInModal';
 import SignedIn from './SignedIn';
 import SignedOut from './SignedOut';
-export default function AccountMenu() {
+export default function AccountMenu(_ref) {
+  var items = _ref.items;
+
   var _useContext = useContext(CurrentUserContext),
       currentUser = _useContext.currentUser;
 
@@ -24,6 +26,7 @@ export default function AccountMenu() {
       showSignInModal = _useState2[0],
       setShowSignInModal = _useState2[1];
 
+  var signedInItems = typeof items === 'undefined' ? [] : items.signedIn;
   var modals = /*#__PURE__*/React.createElement(SignInModal, {
     isOpen: showSignInModal,
     toggle: function toggle() {
@@ -33,7 +36,8 @@ export default function AccountMenu() {
 
   if (currentUser) {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(SignedIn, {
-      currentUser: currentUser
+      currentUser: currentUser,
+      items: signedInItems
     }), modals);
   }
 

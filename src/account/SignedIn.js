@@ -6,12 +6,11 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import styles from './styles.module.css';
 import { useSignOut } from './actions';
 
-const signedInLinks = [];
-
-function SignedIn({ currentUser }) {
+function SignedIn({ currentUser, items }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const signOut = useSignOut();
   const toggle = () => setDropdownOpen(prevState => !prevState);
+  const signedInLinks = items;
 
   let avatarUrl = currentUser.avatarUrl;
   if (avatarUrl == null) {

@@ -24,3 +24,4 @@ export { default as UnauthorizedError } from './UnauthorizedError';
 export { default as useEventListener } from './useEventListener'; // Export a subset of the account modules.
 
 export { Context as CurrentUserContext, Provider as CurrentUserProvider } from './account/CurrentUserContext';
+export { default as AccountMenu } from './account/Menu';
