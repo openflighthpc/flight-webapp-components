@@ -9,7 +9,7 @@ import SignedOut from './SignedOut';
 export default function AccountMenu({ items }) {
   const { currentUser } = useContext(CurrentUserContext);
   const [ showSignInModal, setShowSignInModal ] = useState(false);
-  const signedInItems = typeof(items) === 'undefined' ? [] : items.signedIn
+  const signedInItems = (items == null || items.signedIn == null) ? [] : items.signedIn
 
   const modals = (
     <SignInModal

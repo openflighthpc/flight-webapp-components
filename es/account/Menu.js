@@ -26,7 +26,7 @@ export default function AccountMenu(_ref) {
       showSignInModal = _useState2[0],
       setShowSignInModal = _useState2[1];
 
-  var signedInItems = typeof items === 'undefined' ? [] : items.signedIn;
+  var signedInItems = items == null || items.signedIn == null ? [] : items.signedIn;
   var modals = /*#__PURE__*/React.createElement(SignInModal, {
     isOpen: showSignInModal,
     toggle: function toggle() {
