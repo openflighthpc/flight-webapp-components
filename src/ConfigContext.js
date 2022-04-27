@@ -12,6 +12,10 @@ function Provider({ children }) {
     process.env.REACT_APP_CONFIG_FILE,
     []
   );
+  console.log('process.env.REACT_APP_CONFIG_FILE,:', process.env.REACT_APP_CONFIG_FILE,);  // eslint-disable-line no-console
+  console.log('error:', error);  // eslint-disable-line no-console
+  console.log('loading:', loading);  // eslint-disable-line no-console
+  console.log('data:', data);  // eslint-disable-line no-console
 
   if (loading) {
     return <AppLoadingSpinner />;
@@ -24,6 +28,7 @@ function Provider({ children }) {
   } else if (error) {
     return <DefaultErrorMessage />;
   } else {
+    console.log('final data:', data);  // eslint-disable-line no-console
     return (
       <Context.Provider value={data}>
         {children}

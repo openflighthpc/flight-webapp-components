@@ -14,6 +14,8 @@ function FetchProvider(_ref) {
   var _useContext = useContext(ConfigContext),
       apiRootUrl = _useContext.apiRootUrl;
 
+  console.log('apiRootUrl:', apiRootUrl); // eslint-disable-line no-console
+
   var _useContext2 = useContext(CurrentUserContext),
       currentUser = _useContext2.currentUser;
 

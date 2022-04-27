@@ -6,6 +6,7 @@ import { Context as CurrentUserContext } from './account/CurrentUserContext';
 
 function FetchProvider({ children, cachePolicy }) {
   const { apiRootUrl } = useContext(ConfigContext);
+  console.log('apiRootUrl:', apiRootUrl);  // eslint-disable-line no-console
   const { currentUser } = useContext(CurrentUserContext);
   const options = {
     // We can't make use of the cache until it is possible to clear it when
