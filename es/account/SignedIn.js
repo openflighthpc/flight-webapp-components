@@ -13,6 +13,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import jsGravatar from 'js-gravatar';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -75,7 +76,7 @@ function SignedIn(_ref) {
     alt: "Gravatar",
     src: avatarUrl
   }))), /*#__PURE__*/React.createElement(DropdownMenu, null, signedInLinks.map(function (link) {
-    return /*#__PURE__*/React.createElement(Link, _extends({
+    return /*#__PURE__*/React.createElement(RoutedLink, _extends({
       key: link.href
     }, link));
   }), /*#__PURE__*/React.createElement(DropdownItem, {
@@ -88,12 +89,12 @@ function SignedIn(_ref) {
   }, "Log out")));
 }
 
-function Link(_ref2) {
+function RoutedLink(_ref2) {
   var href = _ref2.href,
       text = _ref2.text;
-  return /*#__PURE__*/React.createElement(DropdownItem, {
-    href: href,
-    className: "nav nav-link"
+  return /*#__PURE__*/React.createElement(Link, {
+    to: href,
+    className: "nav nav-link dropdown-item"
   }, text);
 }
 
