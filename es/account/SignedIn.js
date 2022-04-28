@@ -1,5 +1,3 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -13,7 +11,6 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import jsGravatar from 'js-gravatar';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -75,11 +72,7 @@ function SignedIn(_ref) {
   }, /*#__PURE__*/React.createElement("img", {
     alt: "Gravatar",
     src: avatarUrl
-  }))), /*#__PURE__*/React.createElement(DropdownMenu, null, signedInLinks.map(function (link) {
-    return /*#__PURE__*/React.createElement(RoutedLink, _extends({
-      key: link.href
-    }, link));
-  }), /*#__PURE__*/React.createElement(DropdownItem, {
+  }))), /*#__PURE__*/React.createElement(DropdownMenu, null, signedInLinks, /*#__PURE__*/React.createElement(DropdownItem, {
     className: "nav nav-link dropdown-item",
     onClick: signOut,
     style: {
@@ -87,15 +80,6 @@ function SignedIn(_ref) {
     },
     tag: "a"
   }, "Log out")));
-}
-
-function RoutedLink(_ref2) {
-  var href = _ref2.href,
-      text = _ref2.text;
-  return /*#__PURE__*/React.createElement(Link, {
-    to: href,
-    className: "nav nav-link dropdown-item"
-  }, text);
 }
 
 export default SignedIn;

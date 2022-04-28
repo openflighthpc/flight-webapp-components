@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import jsGravatar from 'js-gravatar';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -56,9 +55,7 @@ function SignedIn({ currentUser, items }) {
         </span>
       </DropdownToggle>
       <DropdownMenu>
-        {
-          signedInLinks.map(link => <RoutedLink key={link.href} {...link} />)
-        }
+        { signedInLinks }
         <DropdownItem
           className="nav nav-link dropdown-item"
           onClick={signOut}
@@ -69,14 +66,6 @@ function SignedIn({ currentUser, items }) {
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  );
-}
-
-function RoutedLink({ href, text }) {
-  return (
-    <Link to={href} className="nav nav-link dropdown-item">
-      {text}
-    </Link>
   );
 }
 
