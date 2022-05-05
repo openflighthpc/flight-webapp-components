@@ -18,7 +18,8 @@ import { BrandbarLogo, BrandbarHomeNav } from './Branding';
 import { useData } from './BrandingContext';
 export default function BrandBar(_ref) {
   var className = _ref.className,
-      navItems = _ref.navItems;
+      navItems = _ref.navItems,
+      accountMenuItems = _ref.accountMenuItems;
   return /*#__PURE__*/React.createElement("nav", {
     className: classNames('navbar navbar-expand-lg navbar-light bg-white', className)
   }, /*#__PURE__*/React.createElement("a", {
@@ -30,7 +31,9 @@ export default function BrandBar(_ref) {
     className: "navbar-nav"
   }, /*#__PURE__*/React.createElement(BrandbarHomeNav, null), /*#__PURE__*/React.createElement(BrandBarItems, null), navItems), /*#__PURE__*/React.createElement("ul", {
     className: "navbar-nav"
-  }, /*#__PURE__*/React.createElement(AccountMenu, null))));
+  }, /*#__PURE__*/React.createElement(AccountMenu, {
+    items: accountMenuItems
+  }))));
 }
 
 function BrandBarItems(_ref2) {

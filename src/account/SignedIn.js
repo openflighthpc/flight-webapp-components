@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import jsGravatar from 'js-gravatar';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
@@ -6,12 +6,11 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap
 import styles from './styles.module.css';
 import { useSignOut } from './actions';
 
-const signedInLinks = [];
-
-function SignedIn({ currentUser }) {
+function SignedIn({ currentUser, items }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const signOut = useSignOut();
   const toggle = () => setDropdownOpen(prevState => !prevState);
+  const signedInLinks = items;
 
   let avatarUrl = currentUser.avatarUrl;
   if (avatarUrl == null) {
@@ -56,9 +55,7 @@ function SignedIn({ currentUser }) {
         </span>
       </DropdownToggle>
       <DropdownMenu>
-        {
-          signedInLinks.map(link => <Link key={link.href} {...link} />)
-        }
+        { signedInLinks }
         <DropdownItem
           className="nav nav-link dropdown-item"
           onClick={signOut}
@@ -69,17 +66,6 @@ function SignedIn({ currentUser }) {
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  );
-}
-
-function Link({ href, text }) {
-  return (
-    <DropdownItem
-      href={href}
-      className="nav nav-link"
-    >
-      {text}
-    </DropdownItem>
   );
 }
 

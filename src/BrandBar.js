@@ -6,7 +6,7 @@ import AccountMenu from './account/Menu';
 import { BrandbarLogo, BrandbarHomeNav } from './Branding';
 import { useData } from './BrandingContext';
 
-export default function BrandBar({ className, navItems }) {
+export default function BrandBar({ className, navItems, accountMenuItems }) {
   return (
     <nav className={classNames('navbar navbar-expand-lg navbar-light bg-white', className)}>
       <a
@@ -22,7 +22,7 @@ export default function BrandBar({ className, navItems }) {
           {navItems}
         </ul>
         <ul className="navbar-nav">
-          <AccountMenu />
+          <AccountMenu items={accountMenuItems} />
         </ul>
       </div>
     </nav>

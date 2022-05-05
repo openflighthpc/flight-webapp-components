@@ -6,9 +6,10 @@ import SignInModal from './SignInModal';
 import SignedIn from './SignedIn';
 import SignedOut from './SignedOut';
 
-export default function AccountMenu() {
+export default function AccountMenu({ items }) {
   const { currentUser } = useContext(CurrentUserContext);
   const [ showSignInModal, setShowSignInModal ] = useState(false);
+  const signedInItems = (items == null || items.signedIn == null) ? [] : items.signedIn
 
   const modals = (
     <SignInModal
@@ -20,7 +21,7 @@ export default function AccountMenu() {
   if (currentUser) {
     return (
       <>
-      <SignedIn currentUser={currentUser} />
+      <SignedIn currentUser={currentUser} items={signedInItems} />
       {modals}
       </>
     );
