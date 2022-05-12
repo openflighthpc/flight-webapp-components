@@ -34,7 +34,7 @@ function BrandBarItems({ className }) {
   const hasApps = Array.isArray(data('apps')) && data('apps').length;
   const hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
 
-  const dropdownItems = data('apps').map(function(app, i) {
+  const dropdownItems = (data('apps') || []).map(function(app, i) {
       return <DropdownItem key={app} href={app.path} >
 	       <span className={"fa fa-solid fa-fw fa-" + app.fa_icon}></span>&nbsp;
 	       {app.short_title || app.title}
