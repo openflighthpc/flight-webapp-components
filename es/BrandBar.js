@@ -41,7 +41,7 @@ function BrandBarItems(_ref2) {
   var data = useData();
   var hasApps = Array.isArray(data('apps')) && data('apps').length;
   var hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
-  var dropdownItems = data('apps').map(function (app, i) {
+  var dropdownItems = (data('apps') || []).map(function (app, i) {
     return /*#__PURE__*/React.createElement(DropdownItem, {
       key: app,
       href: app.path
