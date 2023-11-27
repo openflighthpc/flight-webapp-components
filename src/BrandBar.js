@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import AccountMenu from './account/Menu';
-import { BrandbarLogo } from './Branding';
+import { BrandbarLogo, PoweredByLogo } from './Branding';
 import { useData } from './BrandingContext';
 
 export default function BrandBar({ className, navItems, accountMenuItems }) {
@@ -21,6 +21,15 @@ export default function BrandBar({ className, navItems, accountMenuItems }) {
         </ul>
         <ul className="navbar-nav">
           <AccountMenu items={accountMenuItems} />
+          <li className="nav-item">
+            <a
+              href="https://alces-flight.com/"
+              className="link"
+              target="_blank"
+            >
+              <PoweredByLogo />
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

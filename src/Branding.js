@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import DefaultBrandbarLogo from '../dist/images/openflighthpc_nav.png';
+import PoweredByAlces from '../dist/images/poweredby_white.png';
 import { useBranding } from './BrandingContext';
 
 export function BrandbarLogo() {
@@ -16,6 +17,16 @@ export function BrandbarLogo() {
       alt={logo.alt}
       className={classNames(logo.classNames, 'branding-brandbar-logo')}
       src={logo.url}
+    />
+  );
+}
+
+export function PoweredByLogo() {
+  return (
+    <img
+      alt="Powered by Alces Flight"
+      className='branding-brandbar-logo'
+      src={PoweredByAlces}
     />
   );
 }
