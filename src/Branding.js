@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import DefaultBrandbarLogo from '../dist/images/png_trans_logo-navbar.png';
-import DefaultDashboardLogo from '../dist/images/png_trans_logo.png';
+import DefaultBrandbarLogo from '../dist/images/openflighthpc_nav.png';
 import { useBranding, useData, useEnvironment } from './BrandingContext';
 
 export function BrandbarLogo() {
@@ -10,7 +9,6 @@ export function BrandbarLogo() {
   const logo = branding('brandbar.logo') || {
     url: DefaultBrandbarLogo,
     alt: "OpenflightHPC Logo",
-    height: "75"
   };
 
   return (
@@ -18,7 +16,6 @@ export function BrandbarLogo() {
       alt={logo.alt}
       className={classNames(logo.classNames, 'branding-brandbar-logo')}
       src={logo.url}
-      height={logo.height}
     />
   );
 }
@@ -43,28 +40,6 @@ export function BrandbarHomeNav() {
         }
       </a>
     </li>
-  );
-}
-
-export function DashboardLogo() {
-  const branding = useBranding();
-  const logo = branding('apps.dashboard.logo') || {
-    url: DefaultDashboardLogo,
-    alt: "OpenflightHPC Logo",
-  };
-
-  return (
-    <div className="branding-apps-dashboard-logo-wrapper">
-      <img
-        alt={logo.alt}
-        className={classNames(
-          'logo',
-          logo.classNames,
-          'branding-apps-dashboard-logo'
-        )}
-        src={logo.url}
-      />
-    </div>
   );
 }
 
