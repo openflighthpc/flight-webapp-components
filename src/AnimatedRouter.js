@@ -12,6 +12,7 @@ function AnimatedRouter({
   exact,
   routes,
   useLocation,
+  fullscreen,
 }) {
   const location = useLocation();
   const pageRef = useRef(null);
@@ -44,7 +45,9 @@ function AnimatedRouter({
                 <div className="page row" ref={pageRef}>
                   <ErrorBoundary>
                     <div
-                      className={classNames("centernav col-12")}
+                      className={classNames("centernav",
+                        fullscreen ? "col-12 fullscreen" : "col-8"
+                      )}
                     >
                       <Component />
                     </div>
