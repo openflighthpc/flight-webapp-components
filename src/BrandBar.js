@@ -1,9 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import AccountMenu from './account/Menu';
-import { BrandbarLogo, BrandbarHomeNav } from './Branding';
+import { BrandbarLogo } from './Branding';
 import { useData } from './BrandingContext';
 
 export default function BrandBar({ className, navItems, accountMenuItems }) {
@@ -17,7 +16,6 @@ export default function BrandBar({ className, navItems, accountMenuItems }) {
       </a>
       <div className="collapse navbar-collapse navbar-nav-container">
         <ul className="navbar-nav">
-          <BrandbarHomeNav />
           <BrandBarItems />
           {navItems}
         </ul>
@@ -35,31 +33,17 @@ function BrandBarItems({ className }) {
   const hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
 
   const dropdownItems = (data('apps') || []).map(function(app, i) {
-      return <DropdownItem key={app} href={app.path} >
-	       <span className={"fa fa-solid fa-fw fa-" + app.fa_icon}></span>&nbsp;
-	       {app.short_title || app.title}
-	     </DropdownItem>
+      const title = app.short_title || app.title;
+      return <a className="nav-link nav-menu-button" href={app.path}>
+	       {title.toUpperCase()}
+	     </a>
   });
 
-  const [dropdownOpen, setOpen] = React.useState(false);
-  const toggle = () => setOpen(!dropdownOpen);
-
-  const appsLink = (
-    <li className="nav-item dropdown">
-      <ButtonDropdown isOpen={dropdownOpen} toggle={toggle}>
-        <a
-          className="nav-link nav-menu-button"
-          href={data('apps_link.path') || "/apps"}
-        >
-          {data('apps_link.text') || "Web Suite"}
-        </a>
-
-        <DropdownToggle tag={"a"} type="button" split />
-
-        <DropdownMenu right>
-	  {dropdownItems}
-        </DropdownMenu>
-      </ButtonDropdown>
+  const appsLinks = (
+    <li className="nav-item bordered-nav-item">
+      <div className="btn-group">
+        {dropdownItems}
+      </div>
     </li>
   );
 
@@ -69,7 +53,7 @@ function BrandBarItems({ className }) {
         className="nav-link nav-menu-button"
         href={data('config_packs_link.path') || "/config-packs"}
       >
-        {data('config_packs_link.text') || "Config Packs"}
+        {data('config_packs_link.text').toUpperCase() || "CONFIG PACKS"}
       </a>
     </li>
 
@@ -77,7 +61,7 @@ function BrandBarItems({ className }) {
 
   return (
     <>
-    { hasApps ? appsLink : null }
+    { hasApps ? appsLinks : null }
     { hasPacks ? packsLink : null }
     </>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import DefaultBrandbarLogo from '../dist/images/openflighthpc_nav.png';
-import { useBranding, useData, useEnvironment } from './BrandingContext';
+import { useBranding } from './BrandingContext';
 
 export function BrandbarLogo() {
   const branding = useBranding();
@@ -17,29 +17,6 @@ export function BrandbarLogo() {
       className={classNames(logo.classNames, 'branding-brandbar-logo')}
       src={logo.url}
     />
-  );
-}
-
-export function BrandbarHomeNav() {
-  const data = useData();
-  const branding = useBranding();
-  const environment = useEnvironment();
-
-  return (
-    <li className="nav-item">
-      <a
-        className="nav-link nav-menu-button"
-        href={data('home_link.path') || "/"}
-      >
-        {
-          data('home_link.text') ||
-          branding('brandbar.home_link.text') ||
-            environment('environment.name') ||
-            environment('organisation.name') ||
-            'Home'
-        }
-      </a>
-    </li>
   );
 }
 
