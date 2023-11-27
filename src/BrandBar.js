@@ -8,7 +8,7 @@ import { useData } from './BrandingContext';
 
 export default function BrandBar({ className, navItems, accountMenuItems }) {
   return (
-    <nav className={classNames('navbar navbar-expand-lg navbar-light bg-white', className)}>
+    <nav className={classNames('navbar navbar-expand-lg', className)}>
       <a
         className="navbar-brand"
         href="/"
