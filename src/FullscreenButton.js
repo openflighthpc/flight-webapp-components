@@ -82,22 +82,16 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
       isOpen={dropdownOpen}
       toggle={toggleDropdown}
     >
-      <Button
-        color="light"
-        size="sm"
+      <i
+        className={`fa ${(isFullscreen || isZen) ? 'fa-compress' : 'fa-expand'} ml-2 link`}
+        title={
+          isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen'
+        }
         onClick={defaultAction}
-      >
-        <i className={`fa ${(isFullscreen || isZen) ? 'fa-compress' : 'fa-expand'} mr-1`}></i>
-        <span>
-          {
-            isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen'
-          }
-        </span>
-      </Button>
+      ></i>
       <DropdownToggle
         split
-        color="light"
-        size="sm"
+        color="transparent"
       />
       <DropdownMenu>
         <DropdownItem onClick={toggleFullscreen} >
