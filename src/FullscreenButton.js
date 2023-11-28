@@ -40,6 +40,9 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
     if (isFullscreen) {
       document.exitFullscreen();
     } else {
+      if (isZen) {
+        toggleZen();
+      }
       document.documentElement.requestFullscreen();
     }
   }
@@ -47,18 +50,29 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
   function toggleZen() {
     setZen((prevZen) => {
       if (prevZen) {
-        document.body.classList.remove('zen-mode');
-        if (typeof zenChangeCallbackRef.current === 'function') {
-          zenChangeCallbackRef.current(false);
-        }
+        exitZen();
       } else {
-        document.body.classList.add('zen-mode');
-        if (typeof zenChangeCallbackRef.current === 'function') {
-          zenChangeCallbackRef.current(true);
+        if (isFullscreen) {
+          document.exitFullscreen();
         }
+        enterZen();
       }
       return !prevZen;
     });
+  }
+
+  function enterZen() {
+    document.body.classList.add('zen-mode');
+    if (typeof zenChangeCallbackRef.current === 'function') {
+      zenChangeCallbackRef.current(true);
+    }
+  }
+
+  function exitZen() {
+    document.body.classList.remove('zen-mode');
+    if (typeof zenChangeCallbackRef.current === 'function') {
+      zenChangeCallbackRef.current(false);
+    }
   }
 
   // Turn zen mode off when this component is unmounted.
