@@ -16,6 +16,10 @@
 # rubymine
 /.idea
 
+# builder
+/builder/build
+/builder/node_modules
+
 # misc
 .DS_Store
 .env.local
