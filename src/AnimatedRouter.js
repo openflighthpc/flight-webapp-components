@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import classNames from 'classnames';
 
 import ErrorBoundary from './ErrorBoundary';
 
@@ -12,7 +11,6 @@ function AnimatedRouter({
   exact,
   routes,
   useLocation,
-  fullscreen,
 }) {
   const location = useLocation();
   const pageRef = useRef(null);
@@ -44,13 +42,7 @@ function AnimatedRouter({
               >
                 <div className="page row" ref={pageRef}>
                   <ErrorBoundary>
-                    <div
-                      className={classNames("centernav",
-                        fullscreen ? "col-12 fullscreen" : "col-8"
-                      )}
-                    >
-                      <Component />
-                    </div>
+                    <Component />
                   </ErrorBoundary>
                 </div>
               </MyRoute>
