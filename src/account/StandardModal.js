@@ -1,10 +1,9 @@
 import React from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 
 function StandardModal({
   buttons,
   children,
-  closeButtonText='Close',
   isOpen,
   size,
   title,
@@ -20,15 +19,17 @@ function StandardModal({
       {...rest}
     >
       <ModalBody>
-        {title}
+        <div className={'header'}>
+          {title}
+          <a
+            className={'close-button text-muted'}
+            onClick={toggle}
+          >
+            X
+          </a>
+        </div>
         {children}
         {buttons}
-        <Button
-          color="link"
-          onClick={toggle}
-        >
-          {closeButtonText}
-        </Button>
       </ModalBody>
     </Modal>
   );
