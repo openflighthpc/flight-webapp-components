@@ -25,9 +25,8 @@ function setErrorsFromResponse(setError) {
 }
 
 const defaultFormText = `
-  Sign in to your OpenFlightHPC environment account.  You'll need your
-  account username and password.  Contact your HPC administrator if you
-  don't have these details or need a reminder.
+  Sign in to your Flight Solo environment. You'll need your account username and password. 
+  Contact your HPC administrator if you don't have these details or need a reminder.
 `;
 
 function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
@@ -56,7 +55,7 @@ function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
 
   return (
     <form onSubmit={submit}>
-      <FormText className="mb-2">
+      <FormText className="text-muted small-text">
 	{branding('signInModal.text') || defaultFormText}
       </FormText>
       {
@@ -72,22 +71,23 @@ function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
           null
       }
       <FormInput
-        label="Enter your username"
+        label="Username"
         name="login"
         type="text"
         ref={register}
         formErrors={errors}
         formMeta={formState}
+        className={'login-form-input'}
       />
       <FormInput
-        label="Enter your password"
+        label="Password"
         name="password"
         type="password"
         ref={register}
         formErrors={errors}
         formMeta={formState}
+        className={'login-form-input'}
       />
-      <button type="submit" className="d-none"></button>
     </form>
   );
 }

@@ -16,11 +16,12 @@ function StandardModal({
       isOpen={isOpen}
       size={size}
       toggle={toggle}
+      centered={true}
       {...rest}
     >
-      <ModalHeader toggle={toggle}>{title}</ModalHeader>
-      <ModalBody>{children}</ModalBody>
-      <ModalFooter>
+      <ModalBody>
+        {title}
+        {children}
         {buttons}
         <Button
           color="link"
@@ -28,7 +29,7 @@ function StandardModal({
         >
           {closeButtonText}
         </Button>
-      </ModalFooter>
+      </ModalBody>
     </Modal>
   );
 }
