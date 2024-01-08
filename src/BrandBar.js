@@ -49,7 +49,7 @@ function BrandBarItems({ className }) {
   });
 
   const appsLinks = (
-    <li className="nav-item bordered-nav-item">
+    <li className={ classNames("nav-item", {"bordered-nav-item": hasPacks}) }>
       <div className="btn-group">
         {dropdownItems}
       </div>
