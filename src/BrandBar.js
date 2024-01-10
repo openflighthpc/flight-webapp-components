@@ -43,7 +43,7 @@ function BrandBarItems({ className }) {
 
   const dropdownItems = (data('apps') || []).map(function(app, i) {
       const title = app.short_title || app.title;
-      return <a className="nav-link nav-menu-button" href={app.path}>
+      return <a className="nav-link nav-menu-button white-text" href={app.path}>
 	       {title.toUpperCase()}
 	     </a>
   });
@@ -59,7 +59,7 @@ function BrandBarItems({ className }) {
   const packsLink = (
     <li className="nav-item">
       <a
-        className="nav-link nav-menu-button"
+        className="nav-link nav-menu-button white-text"
         href={data('config_packs_link.path') || "/config-packs"}
       >
         {data('config_packs_link.text').toUpperCase() || "CONFIG PACKS"}
