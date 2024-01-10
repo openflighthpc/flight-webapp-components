@@ -4,6 +4,8 @@ import {
   Modal,
   ModalBody,
 } from 'reactstrap';
+import { Link } from "react-router-dom";
+
 
 function ConfirmedActionButton({
   act,
@@ -16,22 +18,14 @@ function ConfirmedActionButton({
   confirmationText,
   icon,
   id,
+  type,
 }) {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   return (
     <React.Fragment>
-      <Button
-        className={`${acting ? 'disabled' : null} ${className}`}
-        disabled={acting}
-        id={id}
-        onClick={toggle}
-      >
-        { acting ? <i className="fa fa-spinner fa-spin mr-1"/> :
-          icon ? <i className={`fa ${icon} mr-1`}/> : null }
-        <span>{ acting ? actingButtonText : buttonText }</span>
-      </Button>
+      <ActionButton/>
       <Modal
         className="card-text"
         isOpen={modal}
@@ -45,10 +39,13 @@ function ConfirmedActionButton({
           {confirmationText}
           <div className="d-flex mt-4 justify-content-center">
             <a
-              className="button link mr-3"
-              onClick={() => { toggle(); act(); }}
+              className="button link white-text mr-3"
+              onClick={() => {
+                toggle();
+                act();
+              }}
             >
-              { icon ? <i className={`fa ${icon} mr-1`}/> : null }
+              {icon ? <i className={`fa ${icon} mr-1`}/> : null}
               <span>{buttonText}</span>
             </a>
             <a
@@ -61,6 +58,41 @@ function ConfirmedActionButton({
       </Modal>
     </React.Fragment>
   );
+
+  function ActionButton() {
+    const buttonContents = (
+      <>
+        {acting ? <i className="fa fa-spinner fa-spin mr-1"/> :
+          icon ? <i className={`fa ${icon} mr-1`}/> : null}
+        <span>{acting ? actingButtonText : buttonText}</span>
+      </>
+    )
+
+    if (type === 'link') {
+      return(
+        <Link
+          className={`${acting ? 'disabled' : null} ${className}`}
+          disabled={acting}
+          id={id}
+          onClick={toggle}
+        >
+          {buttonContents}
+        </Link>
+      );
+    } else {
+      return (
+        <Button
+          className={`${acting ? 'disabled' : null} ${className}`}
+          disabled={acting}
+          id={id}
+          onClick={toggle}
+        >
+          {buttonContents}
+        </Button>
+      );
+    }
+  }
+
 }
 
 export default ConfirmedActionButton;
