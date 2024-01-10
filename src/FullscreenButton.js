@@ -97,7 +97,7 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
       toggle={toggleDropdown}
     >
       <i
-        className={`fa ${(isFullscreen || isZen) ? 'fa-compress' : 'fa-expand'} ml-2 link`}
+        className={`fa ${(isFullscreen || isZen) ? 'fa-compress' : 'fa-expand'} ml-2 link white-text`}
         title={
           isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen'
         }
@@ -106,6 +106,7 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
       <DropdownToggle
         split
         color="transparent"
+        className="white-text"
       />
       <DropdownMenu>
         <DropdownItem onClick={toggleFullscreen} >
