@@ -75,6 +75,7 @@ function ConfirmedActionButton({
           disabled={acting}
           id={id}
           onClick={toggle}
+          tabIndex={0}
         >
           {buttonContents}
         </Link>
