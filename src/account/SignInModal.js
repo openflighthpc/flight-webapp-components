@@ -17,7 +17,7 @@ function SignInModal({
   const submitButton = (
     <>
       <StatefulButton
-        className="button link"
+        className="button link white-text"
         onClick={() => formApi.current.submit() }
         submitting={isSubmitting}
         type="submit"
