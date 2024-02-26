@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import ErrorBoundary from './ErrorBoundary';
+import {Footer} from "../es";
 
 function AnimatedRouter({
   AuthenticatedRoute,
