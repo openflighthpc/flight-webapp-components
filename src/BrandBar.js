@@ -5,7 +5,7 @@ import AccountMenu from './account/Menu';
 import { BrandbarLogo, PoweredByLogo } from './Branding';
 import { useData } from './BrandingContext';
 
-export default function BrandBar({ className, navItems, accountMenuItems }) {
+export default function BrandBar({ className, navItems, accountMenuItems, activeApp }) {
   return (
     <nav className={classNames('navbar navbar-expand-lg', className)}>
       <a
@@ -30,7 +30,9 @@ export default function BrandBar({ className, navItems, accountMenuItems }) {
         className="collapse navbar-collapse navbar-nav-container"
       >
         <ul className="navbar-nav">
-          <BrandBarItems />
+          <BrandBarItems
+            activeApp={activeApp}
+          />
           {navItems}
         </ul>
         <ul className="navbar-nav">
@@ -52,16 +54,21 @@ export default function BrandBar({ className, navItems, accountMenuItems }) {
   );
 }
 
-function BrandBarItems({ className }) {
+function BrandBarItems({ className, activeApp }) {
   const data = useData();
   const hasApps = Array.isArray(data('apps')) && data('apps').length;
   const hasPacks = Array.isArray(data('config_packs')) && data('config_packs').length;
 
   const dropdownItems = (data('apps') || []).map(function(app, i) {
       const title = app.short_title || app.title;
-      return <a className="nav-link nav-menu-button white-text" href={app.path}>
+      return (
+        <a
+          className={classNames(`nav-link nav-menu-button white-text`, {'active': title === activeApp})}
+          href={app.path}
+        >
 	       {title.toUpperCase()}
 	     </a>
+      )
   });
 
   const appsLinks = (
