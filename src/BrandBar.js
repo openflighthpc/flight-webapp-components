@@ -14,12 +14,27 @@ export default function BrandBar({ className, navItems, accountMenuItems }) {
       >
         <BrandbarLogo />
       </a>
-      <div className="collapse navbar-collapse navbar-nav-container">
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+        aria-controls="navbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i className="fa-solid fa-bars white-text"></i>
+      </button>
+      <div
+        id="navbar"
+        className="collapse navbar-collapse navbar-nav-container"
+      >
         <ul className="navbar-nav">
           <BrandBarItems />
           {navItems}
         </ul>
         <ul className="navbar-nav">
+          <div className="d-flex top-right">
           <AccountMenu items={accountMenuItems} />
           <li className="nav-item">
             <a
@@ -30,6 +45,7 @@ export default function BrandBar({ className, navItems, accountMenuItems }) {
               <PoweredByLogo />
             </a>
           </li>
+          </div>
         </ul>
       </div>
     </nav>

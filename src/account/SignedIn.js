@@ -20,12 +20,12 @@ function SignedIn({ currentUser, items }) {
   }
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} className="align-self-center">
+    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle
         tag="a"
         className={
           classNames(
-            "nav nav-link dropdown-toggle no-caret px-4 d-inline-flex white-text",
+            "nav nav-link dropdown-toggle no-caret d-inline-flex white-text",
             styles.DropdownToggle
           )
         }

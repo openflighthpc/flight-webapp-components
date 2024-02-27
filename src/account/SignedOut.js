@@ -4,7 +4,7 @@ export default function SignedOut({ onClick }) {
   return (
     <li className="nav-item">
       <a
-        className="button link white-text mx-4"
+        className="button link white-text mr-4"
         type="submit"
         onClick={onClick}
       >
