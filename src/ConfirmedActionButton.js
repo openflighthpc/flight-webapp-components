@@ -46,7 +46,7 @@ function ConfirmedActionButton({
               }}
             >
               {icon ? <i className={`fa ${icon} mr-1`}/> : null}
-              <span>{buttonText}</span>
+              {buttonText}
             </a>
             <a
               className="cancel-button button link blue-text mr-3"
@@ -64,7 +64,7 @@ function ConfirmedActionButton({
       <>
         {acting ? <i className="fa fa-spinner fa-spin mr-1"/> :
           icon ? <i className={`fa ${icon} mr-1`}/> : null}
-        <span>{acting ? actingButtonText : buttonText}</span>
+        {acting ? actingButtonText : buttonText}
       </>
     )
 
