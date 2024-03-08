@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import DefaultBrandbarLogo from '../dist/images/openflighthpc_nav.png';
+import DefaultBrandbarLogo from '../dist/images/web_suite.png';
 import DefaultFooterLogo from '../dist/images/openflighthpc_footer.png';
 import PoweredByAlces from '../dist/images/poweredby_white.png';
 import LeftCloud from '../dist/images/parting_cloud_l.png';
@@ -12,7 +12,7 @@ export function BrandbarLogo() {
   const branding = useBranding();
   const logo = branding('brandbar.logo') || {
     url: DefaultBrandbarLogo,
-    alt: "OpenflightHPC Logo",
+    alt: "Flight Web Suite Logo",
   };
 
   return (
@@ -44,7 +44,7 @@ export function PoweredByLogo() {
   return (
     <img
       alt="Powered by Alces Flight"
-      className='branding-brandbar-logo'
+      className='top-right-logo'
       src={PoweredByAlces}
     />
   );
