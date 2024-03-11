@@ -19,12 +19,12 @@ const StatefulButton = ({
     content = children;
   }
   return (
-    <button
+    <a
       disabled={disabled || submitting}
       {...props}
     >
       {content}
-    </button>
+    </a>
   );
 };
 

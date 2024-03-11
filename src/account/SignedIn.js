@@ -20,12 +20,12 @@ function SignedIn({ currentUser, items }) {
   }
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle} className="align-self-center">
+    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle
         tag="a"
         className={
           classNames(
-            "nav nav-link dropdown-toggle px-4 d-inline-flex",
+            "nav nav-link dropdown-toggle no-caret d-inline-flex white-text",
             styles.DropdownToggle
           )
         }
@@ -57,7 +57,7 @@ function SignedIn({ currentUser, items }) {
       <DropdownMenu>
         { signedInLinks }
         <DropdownItem
-          className="nav nav-link dropdown-item"
+          className="nav nav-link white-text"
           onClick={signOut}
           style={{ cursor: 'pointer' }}
           tag="a"

@@ -1,12 +1,14 @@
 import React from 'react';
 
 export const DefaultErrorMessage = () => (
-  <div className="card">
-    <div className="card-body">
+  <div className="centernav col-8">
+    <div className="narrow-container mt-5">
       <h3>An error has occurred</h3>
       <p>
         Unfortunately there has been a problem handling your request. Please
-        try again and, if problems persist, help us to more quickly rectify
+        try again.
+        <br/><br/>
+        If problems persist, help us to more quickly rectify
         the problem by contacting us and letting us know what you were trying
         to do when the error occurred.
       </p>

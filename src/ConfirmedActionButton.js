@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
   Button,
-  ButtonToolbar,
-  Popover,
-  PopoverBody,
-  PopoverHeader,
+  Modal,
+  ModalBody,
 } from 'reactstrap';
+import { Link } from "react-router-dom";
+
 
 function ConfirmedActionButton({
   act,
@@ -18,56 +18,82 @@ function ConfirmedActionButton({
   confirmationText,
   icon,
   id,
+  type,
 }) {
-  const [showConfirmation, setShowConfirmation]  = useState(false);
-  const toggle = () => setShowConfirmation(!showConfirmation);
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
 
   return (
     <React.Fragment>
-      <Button
-        className={`btn btn-danger ${acting ? 'disabled' : null} ${className}`}
-        disabled={acting}
-        id={id}
-        size="sm"
-      >
-        {
-          acting ?
-            <i className="fa fa-spinner fa-spin mr-1"></i> :
-            <i className={`fa ${icon} mr-1`}></i>
-        }
-        <span>{ acting ? actingButtonText : buttonText }</span>
-      </Button>
-      <Popover
-        isOpen={showConfirmation}
-        target={id}
+      <ActionButton/>
+      <Modal
+        className="card-text"
+        isOpen={modal}
         toggle={toggle}
+        centered={true}
       >
-        <PopoverHeader>
-          {confirmationHeaderText}
-        </PopoverHeader>
-        <PopoverBody>
+        <ModalBody>
+          <h3 className="mb-4">
+            {confirmationHeaderText}
+          </h3>
           {confirmationText}
-          <ButtonToolbar className="justify-content-center">
-            <Button
-              className="mr-2"
-              onClick={toggle}
-              size="sm"
+          <div className="d-flex mt-4 justify-content-center">
+            <a
+              className="button link white-text mr-3"
+              onClick={() => {
+                toggle();
+                act();
+              }}
             >
+              {icon ? <i className={`fa ${icon} mr-1`}/> : null}
+              {buttonText}
+            </a>
+            <a
+              className="cancel-button button link blue-text mr-3"
+              onClick={toggle}>
               {cancelButtonText}
-            </Button>
-            <Button
-              color="danger"
-              onClick={() => { toggle(); act(); }}
-              size="sm"
-            >
-              <i className={`fa ${icon} mr-1`}></i>
-              <span>{buttonText}</span>
-            </Button>
-          </ButtonToolbar>
-        </PopoverBody>
-      </Popover>
+            </a>
+          </div>
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   );
+
+  function ActionButton() {
+    const buttonContents = (
+      <>
+        {acting ? <i className="fa fa-spinner fa-spin mr-1"/> :
+          icon ? <i className={`fa ${icon} mr-1`}/> : null}
+        {acting ? actingButtonText : buttonText}
+      </>
+    )
+
+    if (type === 'link') {
+      return(
+        <Link
+          className={`${acting ? 'disabled' : null} ${className}`}
+          disabled={acting}
+          id={id}
+          onClick={toggle}
+          tabIndex={0}
+        >
+          {buttonContents}
+        </Link>
+      );
+    } else {
+      return (
+        <Button
+          className={`${acting ? 'disabled' : null} ${className}`}
+          disabled={acting}
+          id={id}
+          onClick={toggle}
+        >
+          {buttonContents}
+        </Button>
+      );
+    }
+  }
+
 }
 
 export default ConfirmedActionButton;

@@ -43,6 +43,7 @@ const FormInput = ({
   formMeta,
   formErrors,
   name,
+  className,
   ...custom
 }, ref) => {
   const touched = formMeta.touched[name] || formMeta.isSubmitted;
@@ -61,7 +62,7 @@ const FormInput = ({
   const errors = formattedErrors(error, completeErrorMap);
 
   return (
-    <FormGroup check={check}>
+    <FormGroup check={check} className={className}>
       { check ? inputEl : null }
       <Label
         check={check}
