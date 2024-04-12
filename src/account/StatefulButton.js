@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from "reactstrap";
 
 const StatefulButton = ({
   children,
@@ -19,12 +20,12 @@ const StatefulButton = ({
     content = children;
   }
   return (
-    <a
+    <Button
       disabled={disabled || submitting}
       {...props}
     >
       {content}
-    </a>
+    </Button>
   );
 };
 

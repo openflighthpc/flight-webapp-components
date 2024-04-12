@@ -30,7 +30,6 @@ function SignInModal({
 
   return (
     <StandardModal
-      buttons={submitButton}
       closeButtonText="Cancel"
       isOpen={isOpen}
       title={<h2>Log in to <strong className={'blue-text'}>{envName}</strong></h2>}
@@ -41,6 +40,7 @@ function SignInModal({
         ref={formApi}
         onSubmitting={setIsSubmitting}
         onSuccess={toggle}
+        submitButton={submitButton}
       />
     </StandardModal>
   );

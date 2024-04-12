@@ -29,7 +29,7 @@ const defaultFormText = `
   Contact your HPC administrator if you don't have these details or need a reminder.
 `;
 
-function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
+function Form({ formText, login, onSubmitting, onSuccess, submitButton, }, apiRef) {
   const branding = useBranding();
   const { register, handleSubmit, errors, formState, clearErrors, setError } = useForm({
     mode: 'all',
@@ -88,6 +88,7 @@ function Form({ formText, login, onSubmitting, onSuccess, }, apiRef) {
         formMeta={formState}
         className={'login-form-input'}
       />
+      {submitButton}
     </form>
   );
 }
