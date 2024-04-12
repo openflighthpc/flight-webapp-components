@@ -4,8 +4,6 @@ import {
   Modal,
   ModalBody,
 } from 'reactstrap';
-import { Link } from "react-router-dom";
-
 
 function ConfirmedActionButton({
   act,
@@ -18,7 +16,6 @@ function ConfirmedActionButton({
   confirmationText,
   icon,
   id,
-  type,
 }) {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -68,30 +65,16 @@ function ConfirmedActionButton({
       </>
     )
 
-    if (type === 'link') {
-      return(
-        <Link
-          className={`${acting ? 'disabled' : null} ${className}`}
-          disabled={acting}
-          id={id}
-          onClick={toggle}
-          tabIndex={0}
-        >
-          {buttonContents}
-        </Link>
-      );
-    } else {
-      return (
-        <Button
-          className={`${acting ? 'disabled' : null} ${className}`}
-          disabled={acting}
-          id={id}
-          onClick={toggle}
-        >
-          {buttonContents}
-        </Button>
-      );
-    }
+    return (
+      <Button
+        className={`${acting ? 'disabled' : null} ${className}`}
+        disabled={acting}
+        id={id}
+        onClick={toggle}
+      >
+        {buttonContents}
+      </Button>
+    );
   }
 
 }
