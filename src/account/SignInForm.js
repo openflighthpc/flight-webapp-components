@@ -12,8 +12,7 @@ function setErrorsFromResponse(setError) {
   return function(body, response) {
     if (response.status === 403) {
       const message = "Your username or password has not been recognised.";
-      setError("login", { type: "manual", message });
-      setError("password", { type: "manual", message });
+      setError("base", { type: "manual", message });
     } else if (response.status === 404 || response.status === 502 || response.status == null) {
       const message = "Unable to contact login service.";
       setError("base", { type: "manual", message });
