@@ -1,16 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import DefaultBrandbarLogo from '../dist/images/png_trans_logo-navbar.png';
-import DefaultDashboardLogo from '../dist/images/png_trans_logo.png';
-import { useBranding, useData, useEnvironment } from './BrandingContext';
+import DefaultBrandbarLogo from '../dist/images/web_suite.png';
+import DefaultFooterLogo from '../dist/images/openflighthpc_footer.png';
+import PoweredByAlces from '../dist/images/poweredby_white.png';
+import LeftCloud from '../dist/images/parting_cloud_l.png';
+import RightCloud from '../dist/images/parting_cloud_r.png';
+import { useBranding } from './BrandingContext';
 
 export function BrandbarLogo() {
   const branding = useBranding();
   const logo = branding('brandbar.logo') || {
     url: DefaultBrandbarLogo,
-    alt: "OpenflightHPC Logo",
-    height: "75"
+    alt: "Flight Web Suite Logo",
   };
 
   return (
@@ -18,53 +20,53 @@ export function BrandbarLogo() {
       alt={logo.alt}
       className={classNames(logo.classNames, 'branding-brandbar-logo')}
       src={logo.url}
-      height={logo.height}
     />
   );
 }
 
-export function BrandbarHomeNav() {
-  const data = useData();
+export function FooterLogo() {
   const branding = useBranding();
-  const environment = useEnvironment();
-
-  return (
-    <li className="nav-item">
-      <a
-        className="nav-link nav-menu-button"
-        href={data('home_link.path') || "/"}
-      >
-        {
-          data('home_link.text') ||
-          branding('brandbar.home_link.text') ||
-            environment('environment.name') ||
-            environment('organisation.name') ||
-            'Home'
-        }
-      </a>
-    </li>
-  );
-}
-
-export function DashboardLogo() {
-  const branding = useBranding();
-  const logo = branding('apps.dashboard.logo') || {
-    url: DefaultDashboardLogo,
+  const logo = branding('brandbar.logo') || {
+    url: DefaultFooterLogo,
     alt: "OpenflightHPC Logo",
   };
 
   return (
-    <div className="branding-apps-dashboard-logo-wrapper">
-      <img
-        alt={logo.alt}
-        className={classNames(
-          'logo',
-          logo.classNames,
-          'branding-apps-dashboard-logo'
-        )}
-        src={logo.url}
-      />
-    </div>
+    <img
+      alt={logo.alt}
+      id="footer-logo"
+      src={logo.url}
+    />
+  );
+}
+
+export function PoweredByLogo() {
+  return (
+    <img
+      alt="Powered by Alces Flight"
+      className='top-right-logo'
+      src={PoweredByAlces}
+    />
+  );
+}
+
+export function Cloud(props) {
+  const side = props['side'];
+  const id = `cloud-${side}`;
+  let src;
+  if (side === 'l') {
+    src = LeftCloud;
+  } else {
+    src = RightCloud;
+  }
+
+  return (
+    <img
+      alt=""
+      id={id}
+      className='cloud'
+      src={src}
+    />
   );
 }
 

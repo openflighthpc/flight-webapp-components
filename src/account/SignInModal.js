@@ -15,28 +15,32 @@ function SignInModal({
   const [isSubmitting, setIsSubmitting] = useState(false); 
 
   const submitButton = (
-    <StatefulButton
-      className="btn btn-primary"
-      onClick={() => formApi.current.submit() }
-      submitting={isSubmitting}
-      type="submit"
-    >
-      Sign in
-    </StatefulButton>
+    <>
+      <StatefulButton
+        className="button link white-text"
+        onClick={() => formApi.current.submit() }
+        submitting={isSubmitting}
+        type="submit"
+      >
+        LOG IN
+      </StatefulButton>
+    </>
+
   );
 
   return (
     <StandardModal
-      buttons={submitButton}
       closeButtonText="Cancel"
       isOpen={isOpen}
-      title={`Sign in to ${envName}`}
+      title={<h2>Log in to <strong className={'blue-text'}>{envName}</strong></h2>}
       toggle={toggle}
+      size={'lg'}
     >
       <SignInForm
         ref={formApi}
         onSubmitting={setIsSubmitting}
         onSuccess={toggle}
+        submitButton={submitButton}
       />
     </StandardModal>
   );

@@ -40,6 +40,9 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
     if (isFullscreen) {
       document.exitFullscreen();
     } else {
+      if (isZen) {
+        toggleZen();
+      }
       document.documentElement.requestFullscreen();
     }
   }
@@ -47,18 +50,29 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
   function toggleZen() {
     setZen((prevZen) => {
       if (prevZen) {
-        document.body.classList.remove('zen-mode');
-        if (typeof zenChangeCallbackRef.current === 'function') {
-          zenChangeCallbackRef.current(false);
-        }
+        exitZen();
       } else {
-        document.body.classList.add('zen-mode');
-        if (typeof zenChangeCallbackRef.current === 'function') {
-          zenChangeCallbackRef.current(true);
+        if (isFullscreen) {
+          document.exitFullscreen();
         }
+        enterZen();
       }
       return !prevZen;
     });
+  }
+
+  function enterZen() {
+    document.body.classList.add('zen-mode');
+    if (typeof zenChangeCallbackRef.current === 'function') {
+      zenChangeCallbackRef.current(true);
+    }
+  }
+
+  function exitZen() {
+    document.body.classList.remove('zen-mode');
+    if (typeof zenChangeCallbackRef.current === 'function') {
+      zenChangeCallbackRef.current(false);
+    }
   }
 
   // Turn zen mode off when this component is unmounted.
@@ -82,22 +96,17 @@ function FullscreenButton({ onFullscreenChange, onZenChange }) {
       isOpen={dropdownOpen}
       toggle={toggleDropdown}
     >
-      <Button
-        color="light"
-        size="sm"
+      <i
+        className={`fa ${(isFullscreen || isZen) ? 'fa-compress' : 'fa-expand'} ml-2 link white-text`}
+        title={
+          isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen'
+        }
         onClick={defaultAction}
-      >
-        <i className={`fa ${(isFullscreen || isZen) ? 'fa-compress' : 'fa-expand'} mr-1`}></i>
-        <span>
-          {
-            isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen'
-          }
-        </span>
-      </Button>
+      ></i>
       <DropdownToggle
         split
-        color="light"
-        size="sm"
+        color="transparent"
+        className="white-text"
       />
       <DropdownMenu>
         <DropdownItem onClick={toggleFullscreen} >
