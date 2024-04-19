@@ -14,11 +14,7 @@ function setErrorsFromResponse(setError) {
   return function (body, response) {
     if (response.status === 403) {
       var message = "Your username or password has not been recognised.";
-      setError("login", {
-        type: "manual",
-        message: message
-      });
-      setError("password", {
+      setError("base", {
         type: "manual",
         message: message
       });
@@ -38,13 +34,14 @@ function setErrorsFromResponse(setError) {
   };
 }
 
-var defaultFormText = "\n  Sign in to your OpenFlightHPC environment account.  You'll need your\n  account username and password.  Contact your HPC administrator if you\n  don't have these details or need a reminder.\n";
+var defaultFormText = "\n  Sign in to your Flight Solo environment. You'll need your account username and password. \n  Contact your HPC administrator if you don't have these details or need a reminder.\n";
 
 function Form(_ref, apiRef) {
   var formText = _ref.formText,
       login = _ref.login,
       onSubmitting = _ref.onSubmitting,
-      onSuccess = _ref.onSuccess;
+      onSuccess = _ref.onSuccess,
+      submitButton = _ref.submitButton;
   var branding = useBranding();
 
   var _useForm = useForm({
@@ -82,27 +79,26 @@ function Form(_ref, apiRef) {
   return /*#__PURE__*/React.createElement("form", {
     onSubmit: submit
   }, /*#__PURE__*/React.createElement(FormText, {
-    className: "mb-2"
+    className: "text-muted small-text"
   }, branding('signInModal.text') || defaultFormText), errors.base ? /*#__PURE__*/React.createElement(FormFeedback, {
     className: classNames(styles.formFeedback, styles.formFeedback_base)
   }, errors.base.message) : null, /*#__PURE__*/React.createElement(FormInput, {
-    label: "Enter your username",
+    label: "Username",
     name: "login",
     type: "text",
     ref: register,
     formErrors: errors,
-    formMeta: formState
+    formMeta: formState,
+    className: 'login-form-input'
   }), /*#__PURE__*/React.createElement(FormInput, {
-    label: "Enter your password",
+    label: "Password",
     name: "password",
     type: "password",
     ref: register,
     formErrors: errors,
-    formMeta: formState
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "submit",
-    className: "d-none"
-  }));
+    formMeta: formState,
+    className: 'login-form-input'
+  }), submitButton);
 }
 
 export default /*#__PURE__*/React.forwardRef(Form);

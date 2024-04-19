@@ -1,46 +1,59 @@
 import React from 'react';
 import classNames from 'classnames';
-import DefaultBrandbarLogo from '../dist/images/png_trans_logo-navbar.png';
-import DefaultDashboardLogo from '../dist/images/png_trans_logo.png';
-import { useBranding, useData, useEnvironment } from './BrandingContext';
+import DefaultBrandbarLogo from '../dist/images/web_suite.png';
+import DefaultFooterLogo from '../dist/images/openflighthpc_footer.png';
+import PoweredByAlces from '../dist/images/poweredby_white.png';
+import LeftCloud from '../dist/images/parting_cloud_l.png';
+import RightCloud from '../dist/images/parting_cloud_r.png';
+import { useBranding } from './BrandingContext';
 export function BrandbarLogo() {
   var branding = useBranding();
   var logo = branding('brandbar.logo') || {
     url: DefaultBrandbarLogo,
-    alt: "OpenflightHPC Logo",
-    height: "75"
+    alt: "Flight Web Suite Logo"
   };
   return /*#__PURE__*/React.createElement("img", {
     alt: logo.alt,
     className: classNames(logo.classNames, 'branding-brandbar-logo'),
-    src: logo.url,
-    height: logo.height
+    src: logo.url
   });
 }
-export function BrandbarHomeNav() {
-  var data = useData();
+export function FooterLogo() {
   var branding = useBranding();
-  var environment = useEnvironment();
-  return /*#__PURE__*/React.createElement("li", {
-    className: "nav-item"
-  }, /*#__PURE__*/React.createElement("a", {
-    className: "nav-link nav-menu-button",
-    href: data('home_link.path') || "/"
-  }, data('home_link.text') || branding('brandbar.home_link.text') || environment('environment.name') || environment('organisation.name') || 'Home'));
-}
-export function DashboardLogo() {
-  var branding = useBranding();
-  var logo = branding('apps.dashboard.logo') || {
-    url: DefaultDashboardLogo,
+  var logo = branding('brandbar.logo') || {
+    url: DefaultFooterLogo,
     alt: "OpenflightHPC Logo"
   };
-  return /*#__PURE__*/React.createElement("div", {
-    className: "branding-apps-dashboard-logo-wrapper"
-  }, /*#__PURE__*/React.createElement("img", {
+  return /*#__PURE__*/React.createElement("img", {
     alt: logo.alt,
-    className: classNames('logo', logo.classNames, 'branding-apps-dashboard-logo'),
+    id: "footer-logo",
     src: logo.url
-  }));
+  });
+}
+export function PoweredByLogo() {
+  return /*#__PURE__*/React.createElement("img", {
+    alt: "Powered by Alces Flight",
+    className: "top-right-logo",
+    src: PoweredByAlces
+  });
+}
+export function Cloud(props) {
+  var side = props['side'];
+  var id = "cloud-".concat(side);
+  var src;
+
+  if (side === 'l') {
+    src = LeftCloud;
+  } else {
+    src = RightCloud;
+  }
+
+  return /*#__PURE__*/React.createElement("img", {
+    alt: "",
+    id: id,
+    className: "cloud",
+    src: src
+  });
 } // function UnbreakableImg({ src }) {
 //   const [ loaded, setLoaded ] = useState(false);
 //   const classes = `mw-100 mx-auto mb-3`;

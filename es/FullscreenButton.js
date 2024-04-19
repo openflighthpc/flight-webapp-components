@@ -73,6 +73,10 @@ function FullscreenButton(_ref) {
     if (isFullscreen) {
       document.exitFullscreen();
     } else {
+      if (isZen) {
+        toggleZen();
+      }
+
       document.documentElement.requestFullscreen();
     }
   }
@@ -80,21 +84,33 @@ function FullscreenButton(_ref) {
   function toggleZen() {
     setZen(function (prevZen) {
       if (prevZen) {
-        document.body.classList.remove('zen-mode');
-
-        if (typeof zenChangeCallbackRef.current === 'function') {
-          zenChangeCallbackRef.current(false);
-        }
+        exitZen();
       } else {
-        document.body.classList.add('zen-mode');
-
-        if (typeof zenChangeCallbackRef.current === 'function') {
-          zenChangeCallbackRef.current(true);
+        if (isFullscreen) {
+          document.exitFullscreen();
         }
+
+        enterZen();
       }
 
       return !prevZen;
     });
+  }
+
+  function enterZen() {
+    document.body.classList.add('zen-mode');
+
+    if (typeof zenChangeCallbackRef.current === 'function') {
+      zenChangeCallbackRef.current(true);
+    }
+  }
+
+  function exitZen() {
+    document.body.classList.remove('zen-mode');
+
+    if (typeof zenChangeCallbackRef.current === 'function') {
+      zenChangeCallbackRef.current(false);
+    }
   } // Turn zen mode off when this component is unmounted.
 
 
@@ -118,16 +134,14 @@ function FullscreenButton(_ref) {
     className: "btn-group mr-1",
     isOpen: dropdownOpen,
     toggle: toggleDropdown
-  }, /*#__PURE__*/React.createElement(Button, {
-    color: "light",
-    size: "sm",
-    onClick: defaultAction
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa ".concat(isFullscreen || isZen ? 'fa-compress' : 'fa-expand', " mr-1")
-  }), /*#__PURE__*/React.createElement("span", null, isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen')), /*#__PURE__*/React.createElement(DropdownToggle, {
+    className: "fa ".concat(isFullscreen || isZen ? 'fa-compress' : 'fa-expand', " ml-2 link white-text"),
+    title: isFullscreen ? 'Exit Fullscreen' : isZen ? 'Exit Zen mode' : 'Fullscreen',
+    onClick: defaultAction
+  }), /*#__PURE__*/React.createElement(DropdownToggle, {
     split: true,
-    color: "light",
-    size: "sm"
+    color: "transparent",
+    className: "white-text"
   }), /*#__PURE__*/React.createElement(DropdownMenu, null, /*#__PURE__*/React.createElement(DropdownItem, {
     onClick: toggleFullscreen
   }, isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'), /*#__PURE__*/React.createElement(DropdownItem, {

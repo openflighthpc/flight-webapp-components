@@ -11,7 +11,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 import React, { useState } from 'react';
-import { Button, ButtonToolbar, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
+import { Button, Modal, ModalBody } from 'reactstrap';
 
 function ConfirmedActionButton(_ref) {
   var act = _ref.act,
@@ -28,42 +28,48 @@ function ConfirmedActionButton(_ref) {
 
   var _useState = useState(false),
       _useState2 = _slicedToArray(_useState, 2),
-      showConfirmation = _useState2[0],
-      setShowConfirmation = _useState2[1];
+      modal = _useState2[0],
+      setModal = _useState2[1];
 
   var toggle = function toggle() {
-    return setShowConfirmation(!showConfirmation);
+    return setModal(!modal);
   };
 
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Button, {
-    className: "btn btn-danger ".concat(acting ? 'disabled' : null, " ").concat(className),
-    disabled: acting,
-    id: id,
-    size: "sm"
-  }, acting ? /*#__PURE__*/React.createElement("i", {
-    className: "fa fa-spinner fa-spin mr-1"
-  }) : /*#__PURE__*/React.createElement("i", {
-    className: "fa ".concat(icon, " mr-1")
-  }), /*#__PURE__*/React.createElement("span", null, acting ? actingButtonText : buttonText)), /*#__PURE__*/React.createElement(Popover, {
-    isOpen: showConfirmation,
-    target: id,
-    toggle: toggle
-  }, /*#__PURE__*/React.createElement(PopoverHeader, null, confirmationHeaderText), /*#__PURE__*/React.createElement(PopoverBody, null, confirmationText, /*#__PURE__*/React.createElement(ButtonToolbar, {
-    className: "justify-content-center"
-  }, /*#__PURE__*/React.createElement(Button, {
-    className: "mr-2",
-    onClick: toggle,
-    size: "sm"
-  }, cancelButtonText), /*#__PURE__*/React.createElement(Button, {
-    color: "danger",
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ActionButton, null), /*#__PURE__*/React.createElement(Modal, {
+    className: "card-text",
+    isOpen: modal,
+    toggle: toggle,
+    centered: true
+  }, /*#__PURE__*/React.createElement(ModalBody, null, /*#__PURE__*/React.createElement("h3", {
+    className: "mb-4"
+  }, confirmationHeaderText), confirmationText, /*#__PURE__*/React.createElement("div", {
+    className: "d-flex mt-4 justify-content-center"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "button link white-text mr-3",
     onClick: function onClick() {
       toggle();
       act();
-    },
-    size: "sm"
-  }, /*#__PURE__*/React.createElement("i", {
+    }
+  }, icon ? /*#__PURE__*/React.createElement("i", {
     className: "fa ".concat(icon, " mr-1")
-  }), /*#__PURE__*/React.createElement("span", null, buttonText))))));
+  }) : null, buttonText), /*#__PURE__*/React.createElement("a", {
+    className: "cancel-button button link blue-text mr-3",
+    onClick: toggle
+  }, cancelButtonText)))));
+
+  function ActionButton() {
+    var buttonContents = /*#__PURE__*/React.createElement(React.Fragment, null, acting ? /*#__PURE__*/React.createElement("i", {
+      className: "fa fa-spinner fa-spin mr-1"
+    }) : icon ? /*#__PURE__*/React.createElement("i", {
+      className: "fa ".concat(icon, " mr-1")
+    }) : null, acting ? actingButtonText : buttonText);
+    return /*#__PURE__*/React.createElement(Button, {
+      className: "".concat(acting ? 'disabled' : null, " ").concat(className),
+      disabled: acting,
+      id: id,
+      onClick: toggle
+    }, buttonContents);
+  }
 }
 
 export default ConfirmedActionButton;

@@ -25,10 +25,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 import React from 'react';
 export var DefaultErrorMessage = function DefaultErrorMessage() {
   return /*#__PURE__*/React.createElement("div", {
-    className: "card"
+    className: "centernav col-8"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "card-body"
-  }, /*#__PURE__*/React.createElement("h3", null, "An error has occurred"), /*#__PURE__*/React.createElement("p", null, "Unfortunately there has been a problem handling your request. Please try again and, if problems persist, help us to more quickly rectify the problem by contacting us and letting us know what you were trying to do when the error occurred.")));
+    className: "narrow-container mt-5"
+  }, /*#__PURE__*/React.createElement("h3", null, "An error has occurred"), /*#__PURE__*/React.createElement("p", null, "Unfortunately there has been a problem handling your request. Please try again.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "If problems persist, help us to more quickly rectify the problem by contacting us and letting us know what you were trying to do when the error occurred.")));
 };
 
 var ErrorBoundary = /*#__PURE__*/function (_React$Component) {

@@ -28,24 +28,27 @@ function SignInModal(_ref) {
       isSubmitting = _useState2[0],
       setIsSubmitting = _useState2[1];
 
-  var submitButton = /*#__PURE__*/React.createElement(StatefulButton, {
-    className: "btn btn-primary",
+  var submitButton = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(StatefulButton, {
+    className: "button link white-text",
     onClick: function onClick() {
       return formApi.current.submit();
     },
     submitting: isSubmitting,
     type: "submit"
-  }, "Sign in");
+  }, "LOG IN"));
   return /*#__PURE__*/React.createElement(StandardModal, {
-    buttons: submitButton,
     closeButtonText: "Cancel",
     isOpen: isOpen,
-    title: "Sign in to ".concat(envName),
-    toggle: toggle
+    title: /*#__PURE__*/React.createElement("h2", null, "Log in to ", /*#__PURE__*/React.createElement("strong", {
+      className: 'blue-text'
+    }, envName)),
+    toggle: toggle,
+    size: 'lg'
   }, /*#__PURE__*/React.createElement(SignInForm, {
     ref: formApi,
     onSubmitting: setIsSubmitting,
-    onSuccess: toggle
+    onSuccess: toggle,
+    submitButton: submitButton
   }));
 }
 

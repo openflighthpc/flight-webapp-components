@@ -5,6 +5,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 import React from 'react';
+import { Button } from "reactstrap";
 
 var StatefulButton = function StatefulButton(_ref) {
   var children = _ref.children,
@@ -23,7 +24,7 @@ var StatefulButton = function StatefulButton(_ref) {
     content = children;
   }
 
-  return /*#__PURE__*/React.createElement("button", _extends({
+  return /*#__PURE__*/React.createElement(Button, _extends({
     disabled: disabled || submitting
   }, props), content);
 };

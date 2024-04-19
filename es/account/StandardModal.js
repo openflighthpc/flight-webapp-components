@@ -5,29 +5,28 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 
 function StandardModal(_ref) {
   var buttons = _ref.buttons,
       children = _ref.children,
-      _ref$closeButtonText = _ref.closeButtonText,
-      closeButtonText = _ref$closeButtonText === void 0 ? 'Close' : _ref$closeButtonText,
       isOpen = _ref.isOpen,
       size = _ref.size,
       title = _ref.title,
       toggle = _ref.toggle,
-      rest = _objectWithoutProperties(_ref, ["buttons", "children", "closeButtonText", "isOpen", "size", "title", "toggle"]);
+      rest = _objectWithoutProperties(_ref, ["buttons", "children", "isOpen", "size", "title", "toggle"]);
 
   return /*#__PURE__*/React.createElement(Modal, _extends({
     isOpen: isOpen,
     size: size,
-    toggle: toggle
-  }, rest), /*#__PURE__*/React.createElement(ModalHeader, {
-    toggle: toggle
-  }, title), /*#__PURE__*/React.createElement(ModalBody, null, children), /*#__PURE__*/React.createElement(ModalFooter, null, buttons, /*#__PURE__*/React.createElement(Button, {
-    color: "link",
+    toggle: toggle,
+    centered: true
+  }, rest), /*#__PURE__*/React.createElement(ModalBody, null, /*#__PURE__*/React.createElement("div", {
+    className: 'header'
+  }, title, /*#__PURE__*/React.createElement("a", {
+    className: 'close-button text-muted',
     onClick: toggle
-  }, closeButtonText)));
+  }, "X")), children, buttons));
 }
 
 export default StandardModal;

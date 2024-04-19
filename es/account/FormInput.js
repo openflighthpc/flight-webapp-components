@@ -53,7 +53,8 @@ var FormInput = function FormInput(_ref, ref) {
       formMeta = _ref.formMeta,
       formErrors = _ref.formErrors,
       name = _ref.name,
-      custom = _objectWithoutProperties(_ref, ["check", "errorMap", "help", "helpProps", "hideLabel", "label", "formMeta", "formErrors", "name"]);
+      className = _ref.className,
+      custom = _objectWithoutProperties(_ref, ["check", "errorMap", "help", "helpProps", "hideLabel", "label", "formMeta", "formErrors", "name", "className"]);
 
   var touched = formMeta.touched[name] || formMeta.isSubmitted;
   var error = formErrors[name];
@@ -69,7 +70,8 @@ var FormInput = function FormInput(_ref, ref) {
 
   var errors = formattedErrors(error, completeErrorMap);
   return /*#__PURE__*/React.createElement(FormGroup, {
-    check: check
+    check: check,
+    className: className
   }, check ? inputEl : null, /*#__PURE__*/React.createElement(Label, {
     check: check,
     htmlFor: name,

@@ -53,11 +53,10 @@ function SignedIn(_ref) {
 
   return /*#__PURE__*/React.createElement(Dropdown, {
     isOpen: dropdownOpen,
-    toggle: toggle,
-    className: "align-self-center"
+    toggle: toggle
   }, /*#__PURE__*/React.createElement(DropdownToggle, {
     tag: "a",
-    className: classNames("nav nav-link dropdown-toggle px-4 d-inline-flex", styles.DropdownToggle),
+    className: classNames("nav nav-link dropdown-toggle no-caret d-inline-flex white-text", styles.DropdownToggle),
     id: "account-menu"
   }, /*#__PURE__*/React.createElement("span", {
     className: classNames("align-self-center mr-2 user-block", styles.userBlock, {
@@ -73,7 +72,7 @@ function SignedIn(_ref) {
     alt: "Gravatar",
     src: avatarUrl
   }))), /*#__PURE__*/React.createElement(DropdownMenu, null, signedInLinks, /*#__PURE__*/React.createElement(DropdownItem, {
-    className: "nav nav-link dropdown-item",
+    className: "nav nav-link white-text",
     onClick: signOut,
     style: {
       cursor: 'pointer'

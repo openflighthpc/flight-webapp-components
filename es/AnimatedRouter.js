@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import classNames from 'classnames';
 import ErrorBoundary from './ErrorBoundary';
-import SideNav from './SideNav';
 
 function AnimatedRouter(_ref) {
   var AuthenticatedRoute = _ref.AuthenticatedRoute,
@@ -31,8 +29,7 @@ function AnimatedRouter(_ref) {
     var key = _ref2.key,
         path = _ref2.path,
         Component = _ref2.Component,
-        authenticated = _ref2.authenticated,
-        sideNav = _ref2.sideNav;
+        authenticated = _ref2.authenticated;
     var MyRoute = authenticated ? AuthenticatedRoute : Route;
     return /*#__PURE__*/React.createElement(MyRoute, {
       Redirect: Redirect,
@@ -41,17 +38,9 @@ function AnimatedRouter(_ref) {
       key: key || path,
       path: path
     }, /*#__PURE__*/React.createElement("div", {
-      className: "page row",
+      className: "page",
       ref: pageRef
-    }, /*#__PURE__*/React.createElement(ErrorBoundary, null, sideNav ? /*#__PURE__*/React.createElement(SideNav, null) : null, /*#__PURE__*/React.createElement("div", {
-      className: classNames("centernav mt-4 col-12", {
-        "col-md-9": sideNav,
-        "col-lg-8": sideNav,
-        "offset-md-0": sideNav,
-        "offset-lg-0": sideNav,
-        "mt-4": sideNav
-      })
-    }, /*#__PURE__*/React.createElement(Component, null)))));
+    }, /*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(Component, null))));
   }))));
 }
 
