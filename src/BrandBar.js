@@ -63,6 +63,7 @@ function BrandBarItems({ className, activeApp }) {
       const title = app.short_title || app.title;
       return (
         <a
+          key={i}
           className={classNames(`nav-link nav-menu-button white-text`, {'active': title === activeApp})}
           href={app.path}
         >
